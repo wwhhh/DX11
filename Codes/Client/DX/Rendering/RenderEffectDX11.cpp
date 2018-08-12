@@ -171,10 +171,7 @@ void RenderEffectDX11::UpdateConstantBufferList()
 
 void RenderEffectDX11::ConfigurePipeline( PipelineManagerDX11* pPipeline, IParameterManager* pParamManager )
 {
-	// For the standard states, only apply the state change if there is a valid
-	// state in this render effect.  If not, use the current state that has already
-	// been specified before this effect was bound.
-
+    // 设置改变的状态
 	if ( m_iBlendState != -1 ) {
 		pPipeline->OutputMergerStage.DesiredState.BlendState.SetState( m_iBlendState );
 	} else {
@@ -194,7 +191,7 @@ void RenderEffectDX11::ConfigurePipeline( PipelineManagerDX11* pPipeline, IParam
 		pPipeline->RasterizerStage.DesiredState.RasterizerState.SetState( 0 );
 	}
 
-	// Update the contents of the needed constant buffers.
+	// 更新需要的 constant buffer 参数
 
 	for ( auto pParameter : m_uniqueConstBuffers ) {
 		ConstantBufferDX11* cbuffer = RendererDX11::Get()->GetConstantBufferByIndex( pParamManager->GetConstantBufferParameter( pParameter ) );

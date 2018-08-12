@@ -595,7 +595,7 @@ std::wstring TO_STRING_D3D11_SHADER_DESC( D3D11_SHADER_DESC description )
 	std::wstringstream s;
 
 	s << L"Version: " << description.Version << std::endl;
-	s << L"Creator: " << description.Creator << std::endl;
+	//s << L"Creator: " << description.Creator << std::endl;
 	s << L"Flags: " << description.Flags << std::endl;
 	s << L"ConstantBuffers: " << description.ConstantBuffers << std::endl;
 	s << L"BoundResources: " << description.BoundResources << std::endl;

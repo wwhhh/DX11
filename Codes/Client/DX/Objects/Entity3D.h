@@ -18,35 +18,24 @@ public:
 	~Entity3D( );
 
 	// 空间相关的数据和功能性质实现的地方
-
 	void Update( float time );
 	void UpdateLocal( float time );
 	void UpdateWorld( );
 
     // 渲染相关的数据和功能
-    //void SetRenderParams(IParameterManager* pParamManager);
-    //void PreRender(RendererDX11* pRenderer, VIEWTYPE view);
-    //void Render(PipelineManagerDX11* pPipelineManager, IParameterManager* pParamManager, VIEWTYPE view);
+    void SetRenderParams(IParameterManager* pParamManager);
+    void PreRender(RendererDX11* pRenderer, VIEWTYPE view);
+    void Render(PipelineManagerDX11* pPipelineManager, IParameterManager* pParamManager, VIEWTYPE view);
 
 	std::wstring toString( );
 
-	// Scene graph support is added by the following functions.  The graph is enforced
-	// by allowing only a single parent, and only Entity3D will be leaf nodes.
-
+	// 加入了 Scene graph 技术.  强制只能含有一个父节点, 并且只有 Entity3D 可以成为叶子节点
 	void AttachParent( Node3D* Parent );
 	void DetachParent( );
 	Node3D* GetParent( );
 
 	void SetName( const std::wstring& name );
 	std::wstring GetName() const;
-
-	// Provide the ability for a user to add custom data to this entity.  There is no
-	// usage of this pointer from within the entity - it is purely a convenience for
-	// users.  This also means that the user has to ensure that the object pointed to
-	// by pData must be properly managed (i.e. deleted or protected appropriately).
-
-	void SetUserData( void* pData );
-	void* GetUserData() const;
 
 protected:
 
@@ -56,8 +45,6 @@ protected:
 public:
     Transform3D					Transform;
     ControllerPack<Entity3D>	Controllers;
-    //Renderable					Visual;
+    Renderable					Visual;
 	ParameterContainer			Parameters;
-
-	void* m_pUserData;
 };

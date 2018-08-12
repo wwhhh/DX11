@@ -1,2 +1,4 @@
-﻿  LINK : 缺少程序数据库 D:\program\cpp\DX\git\Res\Debug\BaseApp.pdb；正在执行完全链接
+﻿  App.cpp
+d:\program\cpp\dx\git\codes\client\baseapp\baseapp\app.cpp(131): warning C4244: “参数”: 从“int”转换到“float”，可能丢失数据
+d:\program\cpp\dx\git\codes\client\baseapp\baseapp\app.cpp(112): warning C4715: “App::ConfigureEngineComponents”: 不是所有的控件路径都返回值
   BaseApp.vcxproj -> D:\program\cpp\DX\git\Codes\Client\DX\Debug\..\..\..\..\Res\Debug\BaseApp.exe

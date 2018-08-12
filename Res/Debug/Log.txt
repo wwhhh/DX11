@@ -5,24 +5,21 @@ Microsoft Basic Render Driver
 Unable to acquire the ID3D11Debug interface from the device!
 Device supports compute shaders plus raw and structured buffers via shader 4.x
 Skipped adding a duplicate constant buffer...
-Skipped adding a duplicate constant buffer...
 ----------------------------------------------------------------------
 Shader details printout for: 
 ----------------------------------------------------------------------
 Shader Description: 
-Version: 65600
-Creator: ÐOèðç#
-
+Version: 65616
 Flags: 269
 ConstantBuffers: 1
 BoundResources: 1
-InputParameters: 2
-OutputParameters: 2
-InstructionCount: 11
+InputParameters: 1
+OutputParameters: 1
+InstructionCount: 9
 TempRegisterCount: 2
 TempArrayCount: 0
 DefCount: 0
-DclCount: 4
+DclCount: 2
 TextureNormalInstructions: 0
 TextureLoadInstructions: 0
 TextureCompInstructions: 0
@@ -50,13 +47,11 @@ cBarrierInstructions: 0
 cInterlockedInstructions: 0
 cTextureStoreInstructions: 0
 
-Number of Input Signature Elements: 2
+Number of Input Signature Elements: 1
   Semantic Name: , Semantic Index: 0, Register: 0, System Value Type: UNDEFINED, Component Type: FLOAT32, Mask: 15, Read/Write Mask: 15
-  Semantic Name: COLOR, Semantic Index: 0, Register: 1, System Value Type: UNDEFINED, Component Type: FLOAT32, Mask: 15, Read/Write Mask: 15
 
-Number of Output Signature Elements: 2
+Number of Output Signature Elements: 1
   Semantic Name: , Semantic Index: 0, Register: 0, System Value Type: POSITION, Component Type: FLOAT32, Mask: 15, Read/Write Mask: 0
-  Semantic Name: , Semantic Index: 0, Register: 1, System Value Type: UNDEFINED, Component Type: FLOAT32, Mask: 15, Read/Write Mask: 0
 
 Number of Constant Buffer Descriptions: 1
   Buffer Name: , Buffer Type: CBUFFER, Variables: 1, Size: 64, Flags: 0

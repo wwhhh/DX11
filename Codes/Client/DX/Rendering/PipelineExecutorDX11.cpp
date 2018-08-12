@@ -17,12 +17,10 @@ int PipelineExecutorDX11::GetInputLayout( int ShaderID )
 {
 	int layout = -1;
 
-	// Automatically generate the layout if it doesn't already exist.
-
+	// 不存在的话自动生成 layout
 	if ( m_InputLayouts[ShaderID] == 0 )
 		GenerateInputLayout( ShaderID );
 	
-	// The layout should be created now...
 	layout = m_InputLayouts[ShaderID]->layout;
 
 	return( layout );
@@ -30,8 +28,7 @@ int PipelineExecutorDX11::GetInputLayout( int ShaderID )
 
 void PipelineExecutorDX11::GenerateInputLayout( int ShaderID )
 {
-	// Create the input layout for the given shader index
-
+	// 为给定的 shader index 创建 input layout
 	RendererDX11* pRenderer = RendererDX11::Get();
 	if ( m_InputLayouts[ShaderID] == 0 )
 	{

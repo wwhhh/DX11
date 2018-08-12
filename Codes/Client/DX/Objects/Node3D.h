@@ -3,6 +3,7 @@
 #include "Transform3D.h"
 #include "IController.h"
 #include "Rendering/ParameterContainer.h"
+#include "Rendering/SceneRenderTask.h"
 
 class Entity3D;
 
@@ -11,6 +12,9 @@ class Node3D
 public:
 	Node3D();
 	~Node3D();
+
+    void PreRender(RendererDX11* pRenderer, VIEWTYPE view);
+    void Render(PipelineManagerDX11* pPipelineManager, IParameterManager* pParamManager, VIEWTYPE view);
 
 	void Update( float time );
 	void UpdateLocal( float time );

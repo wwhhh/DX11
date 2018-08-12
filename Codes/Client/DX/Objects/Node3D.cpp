@@ -12,6 +12,29 @@ Node3D::~Node3D()
 {
 }
 
+void Node3D::PreRender(RendererDX11* pRenderer, VIEWTYPE view)
+{
+    for (auto pChild : m_Leafs) {
+        if (pChild) pChild->PreRender(pRenderer, view);
+    }
+
+    for (auto node : m_Nodes) {
+        if (node) node->PreRender(pRenderer, view);
+    }
+}
+
+void Node3D::Render(PipelineManagerDX11* pPipelineManager, IParameterManager* pParamManager, VIEWTYPE view)
+{
+    for (auto pChild : m_Leafs) {
+        if (pChild) pChild->Render(pPipelineManager, pParamManager, view);
+    }
+
+    for (auto node : m_Nodes) {
+        if (node) node->Render(pPipelineManager, pParamManager, view);
+    }
+
+}
+
 void Node3D::Update( float time )
 {
 	UpdateLocal( time );

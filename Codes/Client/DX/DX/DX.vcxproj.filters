@@ -526,6 +526,12 @@
     <ClInclude Include="..\Rendering\SceneRenderTask.h">
       <Filter>Render\Material System\Components\Tasks</Filter>
     </ClInclude>
+    <ClInclude Include="..\Rendering\MaterialGeneratorDX11.h">
+      <Filter>Render\Material System</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Rendering\GeometryGeneratorDX11.h">
+      <Filter>Render\Pipeline System\Executors\Old Style Objects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Application\Application.cpp">
@@ -896,6 +902,12 @@
     </ClCompile>
     <ClCompile Include="..\Rendering\SceneRenderTask.cpp">
       <Filter>Render\Material System\Components\Tasks</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Rendering\MaterialGeneratorDX11.cpp">
+      <Filter>Render\Material System</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Rendering\GeometryGeneratorDX11.cpp">
+      <Filter>Render\Pipeline System\Executors\Old Style Objects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

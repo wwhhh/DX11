@@ -46,3 +46,17 @@ void MaterialDX11::SetRenderParams(IParameterManager* pParamManager, VIEWTYPE ty
     // 设置与渲染类型无关的额外的渲染参数
     Parameters.SetRenderParams(pParamManager);
 }
+
+void MaterialDX11::GetAllVertexShaderIDs(std::vector<int>& idlist)
+{
+    for (unsigned int i = 0; i < VT_NUM_VIEW_TYPES; i++)
+    {
+        if (Params[i].pEffect != nullptr)
+        {
+            int ID = Params[i].pEffect->GetVertexShader();
+
+            if (ID != -1)
+                idlist.push_back(ID);
+        }
+    }
+}
