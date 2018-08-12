@@ -56,7 +56,7 @@ protected:
 public:
     Transform3D					Transform;
     ControllerPack<Entity3D>	Controllers;
-    Renderable					Visual;
+    //Renderable					Visual;
 	ParameterContainer			Parameters;
 
 	void* m_pUserData;
