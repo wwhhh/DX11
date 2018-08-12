@@ -1,0 +1,70 @@
+Log file opened.
+------------------------------------------------------------
+NVIDIA GeForce GTX 1060 3GB
+Microsoft Basic Render Driver
+Unable to acquire the ID3D11Debug interface from the device!
+Device supports compute shaders plus raw and structured buffers via shader 4.x
+Skipped adding a duplicate constant buffer...
+Skipped adding a duplicate constant buffer...
+----------------------------------------------------------------------
+Shader details printout for: 
+----------------------------------------------------------------------
+Shader Description: 
+Version: 65600
+Creator: ÐOèðç#
+
+Flags: 269
+ConstantBuffers: 1
+BoundResources: 1
+InputParameters: 2
+OutputParameters: 2
+InstructionCount: 11
+TempRegisterCount: 2
+TempArrayCount: 0
+DefCount: 0
+DclCount: 4
+TextureNormalInstructions: 0
+TextureLoadInstructions: 0
+TextureCompInstructions: 0
+TextureBiasInstructions: 0
+TextureGradientInstructions: 0
+FloatInstructionCount: 7
+IntInstructionCount: 0
+UintInstructionCount: 0
+StaticFlowControlCount: 1
+DynamicFlowControlCount: 0
+MacroInstructionCount: 0
+ArrayInstructionCount: 0
+CutInstructionCount: 0
+EmitInstructionCount: 0
+GSOutputTopology: UNDEFINED
+GSMaxOutputVertexCount: 0
+InputPrimitive: UNDEFINED
+PatchConstantParameters: 0
+cGSInstanceCount: 0
+cControlPoints: 0
+HSOutputPrimitive: UNDEFINED
+HSPartitioning: UNDEFINED
+TessellatorDomain: UNDEFINED
+cBarrierInstructions: 0
+cInterlockedInstructions: 0
+cTextureStoreInstructions: 0
+
+Number of Input Signature Elements: 2
+  Semantic Name: , Semantic Index: 0, Register: 0, System Value Type: UNDEFINED, Component Type: FLOAT32, Mask: 15, Read/Write Mask: 15
+  Semantic Name: COLOR, Semantic Index: 0, Register: 1, System Value Type: UNDEFINED, Component Type: FLOAT32, Mask: 15, Read/Write Mask: 15
+
+Number of Output Signature Elements: 2
+  Semantic Name: , Semantic Index: 0, Register: 0, System Value Type: POSITION, Component Type: FLOAT32, Mask: 15, Read/Write Mask: 0
+  Semantic Name: , Semantic Index: 0, Register: 1, System Value Type: UNDEFINED, Component Type: FLOAT32, Mask: 15, Read/Write Mask: 0
+
+Number of Constant Buffer Descriptions: 1
+  Buffer Name: , Buffer Type: CBUFFER, Variables: 1, Size: 64, Flags: 0
+    Variable Name: , Start Offset: 0, Size: 64, Flags: 2, Start Texture: -1, Texture Size: 0, Start Sampler: -1, Sampler Size: 0
+    Variable Type Name: , Class: MATRIX_ROWS, Type: FLOAT, Rows: 4, Columns: 4, Elements: 0, Members: 0, Offset: 0
+
+Number of Resource Binding Descriptions: 1
+  Name: Transforms, Type: CBUFFER, Bind Point: 0, Bind Count: 1, Flags: 0, Resource Return Type: , Dimension: 0, Number of Samples: 0
+
+----------------------------------------------------------------------
+

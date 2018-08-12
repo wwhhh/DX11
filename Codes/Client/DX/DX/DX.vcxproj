@@ -1,0 +1,389 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{1541C588-4D11-44DC-964D-86101A4999DB}</ProjectGuid>
+    <RootNamespace>DX</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)$(Configuration)\..\..\..\..\Res\Debug\</OutDir>
+    <LibraryPath>$(SolutionDir)$(Configuration)\..\..\..\..\Res\Debug\;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)$(Configuration)\..\..\..\..\Res\Debug\directxtk\Inc;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(SolutionDir)$(Configuration)\..\..\..\..\Codes\Client\DX\Interface;$(SolutionDir)$(Configuration)\..\..\..\..\Codes\Client\DX\;$(SolutionDir)$(Configuration)\..\..\..\..\Codes\Client\DX\Rendering;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Application\Application.h" />
+    <ClInclude Include="..\Application\RenderWindow.h" />
+    <ClInclude Include="..\Application\Win32RenderWindow.h" />
+    <ClInclude Include="..\Events\EventManager.h" />
+    <ClInclude Include="..\Events\EvtErrorMessage.h" />
+    <ClInclude Include="..\Events\EvtFrameStart.h" />
+    <ClInclude Include="..\Events\EvtInfoMessage.h" />
+    <ClInclude Include="..\Events\EvtKeyboardMsg.h" />
+    <ClInclude Include="..\Events\EvtKeyDown.h" />
+    <ClInclude Include="..\Events\EvtKeyUp.h" />
+    <ClInclude Include="..\Events\EvtMouseLButtonDown.h" />
+    <ClInclude Include="..\Events\EvtMouseLButtonUp.h" />
+    <ClInclude Include="..\Events\EvtMouseLeave.h" />
+    <ClInclude Include="..\Events\EvtMouseMButtonDown.h" />
+    <ClInclude Include="..\Events\EvtMouseMButtonUp.h" />
+    <ClInclude Include="..\Events\EvtMouseMove.h" />
+    <ClInclude Include="..\Events\EvtMouseMsg.h" />
+    <ClInclude Include="..\Events\EvtMouseRButtonDown.h" />
+    <ClInclude Include="..\Events\EvtMouseRButtonUp.h" />
+    <ClInclude Include="..\Events\EvtMouseWheel.h" />
+    <ClInclude Include="..\Events\EvtWindowMsg.h" />
+    <ClInclude Include="..\Events\IEvent.h" />
+    <ClInclude Include="..\Events\IEventListener.h" />
+    <ClInclude Include="..\Geometry\LineIndices.h" />
+    <ClInclude Include="..\Geometry\PointIndices.h" />
+    <ClInclude Include="..\Geometry\TriangleIndices.h" />
+    <ClInclude Include="..\Interface\IWindowProc.h" />
+    <ClInclude Include="..\Maths\Matrix3f.h" />
+    <ClInclude Include="..\Maths\Matrix4f.h" />
+    <ClInclude Include="..\Maths\Vector2f.h" />
+    <ClInclude Include="..\Maths\Vector3f.h" />
+    <ClInclude Include="..\Maths\Vector4f.h" />
+    <ClInclude Include="..\Objects\Actor.h" />
+    <ClInclude Include="..\Objects\Camera.h" />
+    <ClInclude Include="..\Objects\Entity3D.h" />
+    <ClInclude Include="..\Objects\FirstPersonCamera.h" />
+    <ClInclude Include="..\Objects\IController.h" />
+    <ClInclude Include="..\Objects\Node3D.h" />
+    <ClInclude Include="..\Objects\SpatialController.h" />
+    <ClInclude Include="..\Objects\Transform3D.h" />
+    <ClInclude Include="..\PCH.h" />
+    <ClInclude Include="..\Rendering\BlendStateConfigDX11.h" />
+    <ClInclude Include="..\Rendering\BufferConfigDX11.h" />
+    <ClInclude Include="..\Rendering\BufferDX11.h" />
+    <ClInclude Include="..\Rendering\ByteAddressBufferDX11.h" />
+    <ClInclude Include="..\Rendering\ConstantBufferDX11.h" />
+    <ClInclude Include="..\Rendering\ConstantBufferParameterDX11.h" />
+    <ClInclude Include="..\Rendering\ConstantBufferParameterWriterDX11.h" />
+    <ClInclude Include="..\Rendering\DepthStencilStateConfigDX11.h" />
+    <ClInclude Include="..\Rendering\DepthStencilViewConfigDX11.h" />
+    <ClInclude Include="..\Rendering\DepthStencilViewDX11.h" />
+    <ClInclude Include="..\Rendering\DXGIAdapter.h" />
+    <ClInclude Include="..\Rendering\DXGIOutput.h" />
+    <ClInclude Include="..\Rendering\GeometryDX11.h" />
+    <ClInclude Include="..\Rendering\GeometryShaderDX11.h" />
+    <ClInclude Include="..\Rendering\GeometryStageDX11.h" />
+    <ClInclude Include="..\Rendering\IndexBufferDX11.h" />
+    <ClInclude Include="..\Rendering\IndirectArgsBufferDX11.h" />
+    <ClInclude Include="..\Rendering\InputAssemblerStageDX11.h" />
+    <ClInclude Include="..\Rendering\InputAssemblerStateDX11.h" />
+    <ClInclude Include="..\Rendering\IParameterManager.h" />
+    <ClInclude Include="..\Rendering\MaterialDX11.h" />
+    <ClInclude Include="..\Rendering\MatrixArrayParameterDX11.h" />
+    <ClInclude Include="..\Rendering\MatrixArrayParameterWriterDX11.h" />
+    <ClInclude Include="..\Rendering\MatrixParameterDX11.h" />
+    <ClInclude Include="..\Rendering\MatrixParameterWriterDX11.h" />
+    <ClInclude Include="..\Rendering\OutputMergerStageDX11.h" />
+    <ClInclude Include="..\Rendering\OutputMergerStageStateDX11.h" />
+    <ClInclude Include="..\Rendering\ParameterContainer.h" />
+    <ClInclude Include="..\Rendering\ParameterManagerDX11.h" />
+    <ClInclude Include="..\Rendering\ParameterWriter.h" />
+    <ClInclude Include="..\Rendering\PipelineExecutorDX11.h" />
+    <ClInclude Include="..\Rendering\PipelineManagerDX11.h" />
+    <ClInclude Include="..\Rendering\PixelShaderDX11.h" />
+    <ClInclude Include="..\Rendering\PixelStageDX11.h" />
+    <ClInclude Include="..\Rendering\RasterizerStageDX11.h" />
+    <ClInclude Include="..\Rendering\RasterizerStageStateDX11.h" />
+    <ClInclude Include="..\Rendering\RasterizerStateConfigDX11.h" />
+    <ClInclude Include="..\Rendering\Renderable.h" />
+    <ClInclude Include="..\Rendering\RenderEffectDX11.h" />
+    <ClInclude Include="..\Rendering\RendererDX11.h" />
+    <ClInclude Include="..\Rendering\RenderParameterDX11.h" />
+    <ClInclude Include="..\Rendering\RenderTargetViewConfigDX11.h" />
+    <ClInclude Include="..\Rendering\RenderTargetViewDX11.h" />
+    <ClInclude Include="..\Rendering\ResourceDX11.h" />
+    <ClInclude Include="..\Rendering\ResourceProxyDX11.h" />
+    <ClInclude Include="..\Rendering\SamplerParameterDX11.h" />
+    <ClInclude Include="..\Rendering\SamplerParameterWriterDX11.h" />
+    <ClInclude Include="..\Rendering\SamplerStateConfigDX11.h" />
+    <ClInclude Include="..\Rendering\SceneRenderTask.h" />
+    <ClInclude Include="..\Rendering\ShaderDX11.h" />
+    <ClInclude Include="..\Rendering\ShaderFactoryDX11.h" />
+    <ClInclude Include="..\Rendering\ShaderReflectionDX11.h" />
+    <ClInclude Include="..\Rendering\ShaderReflectionFactoryDX11.h" />
+    <ClInclude Include="..\Rendering\ShaderResourceParameterDX11.h" />
+    <ClInclude Include="..\Rendering\ShaderResourceParameterWriterDX11.h" />
+    <ClInclude Include="..\Rendering\ShaderResourceViewConfigDX11.h" />
+    <ClInclude Include="..\Rendering\ShaderResourceViewDX11.h" />
+    <ClInclude Include="..\Rendering\ShaderStageDX11.h" />
+    <ClInclude Include="..\Rendering\ShaderStageStateDX11.h" />
+    <ClInclude Include="..\Rendering\StreamOutputStageDX11.h" />
+    <ClInclude Include="..\Rendering\StreamOutputStageStateDX11.h" />
+    <ClInclude Include="..\Rendering\StructuredBufferDX11.h" />
+    <ClInclude Include="..\Rendering\SwapChainConfigDX11.h" />
+    <ClInclude Include="..\Rendering\SwapChainDX11.h" />
+    <ClInclude Include="..\Rendering\Task.h" />
+    <ClInclude Include="..\Rendering\Texture1dConfigDX11.h" />
+    <ClInclude Include="..\Rendering\Texture1dDX11.h" />
+    <ClInclude Include="..\Rendering\Texture2dConfigDX11.h" />
+    <ClInclude Include="..\Rendering\Texture2dDX11.h" />
+    <ClInclude Include="..\Rendering\Texture3dConfigDX11.h" />
+    <ClInclude Include="..\Rendering\Texture3dDX11.h" />
+    <ClInclude Include="..\Rendering\TStateArrayMonitor.h" />
+    <ClInclude Include="..\Rendering\TStateMonitor.h" />
+    <ClInclude Include="..\Rendering\UnorderedAccessParameterDX11.h" />
+    <ClInclude Include="..\Rendering\UnorderedAccessParameterWriterDX11.h" />
+    <ClInclude Include="..\Rendering\UnorderedAccessViewConfigDX11.h" />
+    <ClInclude Include="..\Rendering\UnorderedAccessViewDX11.h" />
+    <ClInclude Include="..\Rendering\VectorParameterDX11.h" />
+    <ClInclude Include="..\Rendering\VectorParameterWriterDX11.h" />
+    <ClInclude Include="..\Rendering\VertexBufferDX11.h" />
+    <ClInclude Include="..\Rendering\VertexElementDX11.h" />
+    <ClInclude Include="..\Rendering\VertexShaderDX11.h" />
+    <ClInclude Include="..\Rendering\VertexStageDX11.h" />
+    <ClInclude Include="..\Rendering\ViewPortDX11.h" />
+    <ClInclude Include="..\Utils\D3DEnumConversion.h" />
+    <ClInclude Include="..\Utils\FileLoader.h" />
+    <ClInclude Include="..\Utils\FileSystem.h" />
+    <ClInclude Include="..\Utils\Log.h" />
+    <ClInclude Include="..\Utils\Timer.h" />
+    <ClInclude Include="..\Utils\UtilString.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\Application\Application.cpp" />
+    <ClCompile Include="..\Application\RenderWindow.cpp" />
+    <ClCompile Include="..\Application\Win32RenderWindow.cpp" />
+    <ClCompile Include="..\Events\EventManager.cpp" />
+    <ClCompile Include="..\Events\EvtErrorMessage.cpp" />
+    <ClCompile Include="..\Events\EvtFrameStart.cpp" />
+    <ClCompile Include="..\Events\EvtInfoMessage.cpp" />
+    <ClCompile Include="..\Events\EvtKeyboardMsg.cpp" />
+    <ClCompile Include="..\Events\EvtKeyDown.cpp" />
+    <ClCompile Include="..\Events\EvtKeyUp.cpp" />
+    <ClCompile Include="..\Events\EvtMouseLButtonDown.cpp" />
+    <ClCompile Include="..\Events\EvtMouseLButtonUp.cpp" />
+    <ClCompile Include="..\Events\EvtMouseLeave.cpp" />
+    <ClCompile Include="..\Events\EvtMouseMButtonDown.cpp" />
+    <ClCompile Include="..\Events\EvtMouseMButtonUp.cpp" />
+    <ClCompile Include="..\Events\EvtMouseMove.cpp" />
+    <ClCompile Include="..\Events\EvtMouseMsg.cpp" />
+    <ClCompile Include="..\Events\EvtMouseRButtonDown.cpp" />
+    <ClCompile Include="..\Events\EvtMouseRButtonUp.cpp" />
+    <ClCompile Include="..\Events\EvtMouseWheel.cpp" />
+    <ClCompile Include="..\Events\EvtWindowMsg.cpp" />
+    <ClCompile Include="..\Events\IEventListener.cpp" />
+    <ClCompile Include="..\Geometry\LineIndices.cpp" />
+    <ClCompile Include="..\Geometry\PointIndices.cpp" />
+    <ClCompile Include="..\Geometry\TriangleIndices.cpp" />
+    <ClCompile Include="..\Maths\Matrix3f.cpp" />
+    <ClCompile Include="..\Maths\Matrix4f.cpp" />
+    <ClCompile Include="..\Maths\Vector2f.cpp" />
+    <ClCompile Include="..\Maths\Vector3f.cpp" />
+    <ClCompile Include="..\Maths\Vector4f.cpp" />
+    <ClCompile Include="..\Objects\Actor.cpp" />
+    <ClCompile Include="..\Objects\Camera.cpp" />
+    <ClCompile Include="..\Objects\Entity3D.cpp" />
+    <ClCompile Include="..\Objects\FirstPersonCamera.cpp" />
+    <ClCompile Include="..\Objects\Node3D.cpp" />
+    <ClCompile Include="..\Objects\Transform3D.cpp" />
+    <ClCompile Include="..\Rendering\BlendStateConfigDX11.cpp" />
+    <ClCompile Include="..\Rendering\BufferConfigDX11.cpp" />
+    <ClCompile Include="..\Rendering\BufferDX11.cpp" />
+    <ClCompile Include="..\Rendering\ByteAddressBufferDX11.cpp" />
+    <ClCompile Include="..\Rendering\ConstantBufferDX11.cpp" />
+    <ClCompile Include="..\Rendering\ConstantBufferParameterDX11.cpp" />
+    <ClCompile Include="..\Rendering\ConstantBufferParameterWriterDX11.cpp" />
+    <ClCompile Include="..\Rendering\DepthStencilStateConfigDX11.cpp" />
+    <ClCompile Include="..\Rendering\DepthStencilViewConfigDX11.cpp" />
+    <ClCompile Include="..\Rendering\DepthStencilViewDX11.cpp" />
+    <ClCompile Include="..\Rendering\DXGIAdapter.cpp" />
+    <ClCompile Include="..\Rendering\DXGIOutput.cpp" />
+    <ClCompile Include="..\Rendering\GeometryDX11.cpp" />
+    <ClCompile Include="..\Rendering\GeometryShaderDX11.cpp" />
+    <ClCompile Include="..\Rendering\GeometryStageDX11.cpp" />
+    <ClCompile Include="..\Rendering\IndexBufferDX11.cpp" />
+    <ClCompile Include="..\Rendering\IndirectArgsBufferDX11.cpp" />
+    <ClCompile Include="..\Rendering\InputAssemblerStageDX11.cpp" />
+    <ClCompile Include="..\Rendering\InputAssemblerStateDX11.cpp" />
+    <ClCompile Include="..\Rendering\MaterialDX11.cpp" />
+    <ClCompile Include="..\Rendering\MatrixArrayParameterDX11.cpp" />
+    <ClCompile Include="..\Rendering\MatrixArrayParameterWriterDX11.cpp" />
+    <ClCompile Include="..\Rendering\MatrixParameterDX11.cpp" />
+    <ClCompile Include="..\Rendering\MatrixParameterWriterDX11.cpp" />
+    <ClCompile Include="..\Rendering\OutputMergerStageDX11.cpp" />
+    <ClCompile Include="..\Rendering\OutputMergerStageStateDX11.cpp" />
+    <ClCompile Include="..\Rendering\ParameterContainer.cpp" />
+    <ClCompile Include="..\Rendering\ParameterManagerDX11.cpp" />
+    <ClCompile Include="..\Rendering\ParameterWriter.cpp" />
+    <ClCompile Include="..\Rendering\PipelineExecutorDX11.cpp" />
+    <ClCompile Include="..\Rendering\PipelineManagerDX11.cpp" />
+    <ClCompile Include="..\Rendering\PixelShaderDX11.cpp" />
+    <ClCompile Include="..\Rendering\PixelStageDX11.cpp" />
+    <ClCompile Include="..\Rendering\RasterizerStageDX11.cpp" />
+    <ClCompile Include="..\Rendering\RasterizerStageStateDX11.cpp" />
+    <ClCompile Include="..\Rendering\RasterizerStateConfigDX11.cpp" />
+    <ClCompile Include="..\Rendering\Renderable.cpp" />
+    <ClCompile Include="..\Rendering\RenderEffectDX11.cpp" />
+    <ClCompile Include="..\Rendering\RendererDX11.cpp" />
+    <ClCompile Include="..\Rendering\RenderParameterDX11.cpp" />
+    <ClCompile Include="..\Rendering\RenderTargetViewConfigDX11.cpp" />
+    <ClCompile Include="..\Rendering\RenderTargetViewDX11.cpp" />
+    <ClCompile Include="..\Rendering\ResourceDX11.cpp" />
+    <ClCompile Include="..\Rendering\ResourceProxyDX11.cpp" />
+    <ClCompile Include="..\Rendering\SamplerParameterDX11.cpp" />
+    <ClCompile Include="..\Rendering\SamplerParameterWriterDX11.cpp" />
+    <ClCompile Include="..\Rendering\SamplerStateConfigDX11.cpp" />
+    <ClCompile Include="..\Rendering\SceneRenderTask.cpp" />
+    <ClCompile Include="..\Rendering\ShaderDX11.cpp" />
+    <ClCompile Include="..\Rendering\ShaderFactoryDX11.cpp" />
+    <ClCompile Include="..\Rendering\ShaderReflectionDX11.cpp" />
+    <ClCompile Include="..\Rendering\ShaderReflectionFactoryDX11.cpp" />
+    <ClCompile Include="..\Rendering\ShaderResourceParameterDX11.cpp" />
+    <ClCompile Include="..\Rendering\ShaderResourceParameterWriterDX11.cpp" />
+    <ClCompile Include="..\Rendering\ShaderResourceViewConfigDX11.cpp" />
+    <ClCompile Include="..\Rendering\ShaderResourceViewDX11.cpp" />
+    <ClCompile Include="..\Rendering\ShaderStageDX11.cpp" />
+    <ClCompile Include="..\Rendering\ShaderStageStateDX11.cpp" />
+    <ClCompile Include="..\Rendering\StreamOutputStageDX11.cpp" />
+    <ClCompile Include="..\Rendering\StreamOutputStageStateDX11.cpp" />
+    <ClCompile Include="..\Rendering\StructuredBufferDX11.cpp" />
+    <ClCompile Include="..\Rendering\SwapChainConfigDX11.cpp" />
+    <ClCompile Include="..\Rendering\SwapChainDX11.cpp" />
+    <ClCompile Include="..\Rendering\Task.cpp" />
+    <ClCompile Include="..\Rendering\Texture1dConfigDX11.cpp" />
+    <ClCompile Include="..\Rendering\Texture1dDX11.cpp" />
+    <ClCompile Include="..\Rendering\Texture2dConfigDX11.cpp" />
+    <ClCompile Include="..\Rendering\Texture2dDX11.cpp" />
+    <ClCompile Include="..\Rendering\Texture3dConfigDX11.cpp" />
+    <ClCompile Include="..\Rendering\Texture3dDX11.cpp" />
+    <ClCompile Include="..\Rendering\UnorderedAccessParameterDX11.cpp" />
+    <ClCompile Include="..\Rendering\UnorderedAccessParameterWriterDX11.cpp" />
+    <ClCompile Include="..\Rendering\UnorderedAccessViewConfigDX11.cpp" />
+    <ClCompile Include="..\Rendering\UnorderedAccessViewDX11.cpp" />
+    <ClCompile Include="..\Rendering\VectorParameterDX11.cpp" />
+    <ClCompile Include="..\Rendering\VectorParameterWriterDX11.cpp" />
+    <ClCompile Include="..\Rendering\VertexBufferDX11.cpp" />
+    <ClCompile Include="..\Rendering\VertexElementDX11.cpp" />
+    <ClCompile Include="..\Rendering\VertexShaderDX11.cpp" />
+    <ClCompile Include="..\Rendering\VertexStageDX11.cpp" />
+    <ClCompile Include="..\Rendering\ViewPortDX11.cpp" />
+    <ClCompile Include="..\Utils\D3DEnumConversion.cpp" />
+    <ClCompile Include="..\Utils\FileLoader.cpp" />
+    <ClCompile Include="..\Utils\FileSystem.cpp" />
+    <ClCompile Include="..\Utils\Log.cpp" />
+    <ClCompile Include="..\Utils\Timer.cpp" />
+    <ClCompile Include="..\Utils\UtilString.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Objects\IController.inl" />
+    <None Include="..\Objects\SpatialController.inl" />
+    <None Include="..\Rendering\TStateArrayMonitor.inl" />
+    <None Include="..\Rendering\TStateMonitor.inl" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
