@@ -158,6 +158,8 @@
     <ClInclude Include="..\Objects\FirstPersonCamera.h" />
     <ClInclude Include="..\Objects\IController.h" />
     <ClInclude Include="..\Objects\Node3D.h" />
+    <ClInclude Include="..\Objects\Scene.h" />
+    <ClInclude Include="..\Objects\SceneGraph.h" />
     <ClInclude Include="..\Objects\SpatialController.h" />
     <ClInclude Include="..\Objects\Transform3D.h" />
     <ClInclude Include="..\PCH.h" />
@@ -290,6 +292,8 @@
     <ClCompile Include="..\Objects\Entity3D.cpp" />
     <ClCompile Include="..\Objects\FirstPersonCamera.cpp" />
     <ClCompile Include="..\Objects\Node3D.cpp" />
+    <ClCompile Include="..\Objects\Scene.cpp" />
+    <ClCompile Include="..\Objects\SceneGraph.cpp" />
     <ClCompile Include="..\Objects\Transform3D.cpp" />
     <ClCompile Include="..\Rendering\BlendStateConfigDX11.cpp" />
     <ClCompile Include="..\Rendering\BufferConfigDX11.cpp" />
