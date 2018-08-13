@@ -147,6 +147,10 @@ void App::Initialize() {
     GeometryGeneratorDX11::GenerateSphere(pGeoSphere, 16, 9, 1.0f);
     pGeoSphere->LoadToBuffers();
     pEntitySphere->Visual.SetGeometry(pGeoSphere);
+
+    m_pScene = new Scene();
+    m_pScene->AddActor(pActorSpere);
+    m_pScene->AddCamera(g_Camera);
 }
 
 void App::Update() {
@@ -161,8 +165,10 @@ void App::Update() {
     m_pRenderer11->m_pParamMgr->SetViewMatrixParameter(&m_ViewMatrix);
 
     m_pRenderer11->m_pParamMgr->SetWorldMatrixParameter(&pActorSpere->GetNode()->Transform.WorldMatrix());
-    pActorSpere->GetBody()->SetRenderParams(m_pRenderer11->m_pParamMgr);
-    pActorSpere->GetBody()->Render(m_pRenderer11->pImmPipeline, m_pRenderer11->m_pParamMgr, VIEWTYPE::VT_PERSPECTIVE);
+    //pActorSpere->GetBody()->SetRenderParams(m_pRenderer11->m_pParamMgr);
+    //pActorSpere->GetBody()->Render(m_pRenderer11->pImmPipeline, m_pRenderer11->m_pParamMgr, VIEWTYPE::VT_PERSPECTIVE);
+
+    m_pScene->Render(m_pRenderer11);
 
     // Present the results
     m_pRenderer11->Present(m_pWindow->GetHandle(), m_pWindow->GetSwapChain());

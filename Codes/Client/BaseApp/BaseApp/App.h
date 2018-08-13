@@ -2,6 +2,7 @@
 #include "Application\Application.h"
 #include "Rendering\RendererDX11.h"
 #include "Rendering\RenderEffectDX11.h"
+#include "Objects\Scene.h"
 #include "Maths\Matrix4f.h"
 
 class App : public Application
@@ -34,6 +35,8 @@ protected:
     int                     m_VertexLayout;
     ResourcePtr             m_pIndexBuffer;
     RenderEffectDX11		m_Effect;
+
+    Scene*                  m_pScene;
 
     Matrix4f m_WorldMatrix;
     Matrix4f m_ViewMatrix;
