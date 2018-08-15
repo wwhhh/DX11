@@ -43,10 +43,7 @@ void Camera::RenderFrame( RendererDX11* pRenderer )
 
         Parameters.InitRenderParams();
 
-        m_pCameraView->SetViewMatrix(m_ViewMatrix);
-
-        //pRenderer->m_pParamMgr->SetViewMatrixParameter(&m_ViewMatrix);
-        //pRenderer->m_pParamMgr->SetProjMatrixParameter(&m_ProjMatrix);
+        //m_pCameraView->SetViewMatrix(m_ViewMatrix);
 
         // 设置场景节点
         if (m_pScene) {
@@ -63,6 +60,7 @@ void Camera::RenderFrame( RendererDX11* pRenderer )
 void Camera::SetCameraView(SceneRenderTask* pTask)
 {
     m_pCameraView = pTask;
+    m_pCameraView->SetEntity(m_pBody);
 }
 
 void Camera::SetOverlayView( Task* pTask )
