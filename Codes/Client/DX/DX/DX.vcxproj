@@ -248,6 +248,7 @@
     <ClInclude Include="..\Rendering\VertexElementDX11.h" />
     <ClInclude Include="..\Rendering\VertexShaderDX11.h" />
     <ClInclude Include="..\Rendering\VertexStageDX11.h" />
+    <ClInclude Include="..\Rendering\ViewPerspective.h" />
     <ClInclude Include="..\Rendering\ViewPortDX11.h" />
     <ClInclude Include="..\Utils\D3DEnumConversion.h" />
     <ClInclude Include="..\Utils\FileLoader.h" />
@@ -377,6 +378,7 @@
     <ClCompile Include="..\Rendering\VertexElementDX11.cpp" />
     <ClCompile Include="..\Rendering\VertexShaderDX11.cpp" />
     <ClCompile Include="..\Rendering\VertexStageDX11.cpp" />
+    <ClCompile Include="..\Rendering\ViewPerspective.cpp" />
     <ClCompile Include="..\Rendering\ViewPortDX11.cpp" />
     <ClCompile Include="..\Utils\D3DEnumConversion.cpp" />
     <ClCompile Include="..\Utils\FileLoader.cpp" />

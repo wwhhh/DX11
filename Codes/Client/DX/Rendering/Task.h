@@ -1,3 +1,5 @@
+#pragma once
+
 #include "RendererDX11.h"
 #include "PipelineManagerDX11.h"
 #include "IParameterManager.h"

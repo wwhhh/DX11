@@ -13,6 +13,7 @@ public:
 	Camera();
 	virtual ~Camera();
 
+    void SetCameraView(SceneRenderTask* pTask);
 	void SetOverlayView( Task* pTask );
 	void SetScene( Scene* pScene );
 
@@ -47,6 +48,7 @@ protected:
 	void ApplyProjectionParams();
 	void ApplyOrthographicParams();
 
+    SceneRenderTask* m_pCameraView;
 	Task* m_pOverlayView;
 	Scene* m_pScene;
 

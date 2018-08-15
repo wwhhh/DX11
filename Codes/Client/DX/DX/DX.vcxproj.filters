@@ -538,6 +538,9 @@
     <ClInclude Include="..\Objects\SceneGraph.h">
       <Filter>Objects\Scene Objects</Filter>
     </ClInclude>
+    <ClInclude Include="..\Rendering\ViewPerspective.h">
+      <Filter>Render\Material System\Components\Tasks</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Application\Application.cpp">
@@ -920,6 +923,9 @@
     </ClCompile>
     <ClCompile Include="..\Objects\SceneGraph.cpp">
       <Filter>Objects\Scene Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Rendering\ViewPerspective.cpp">
+      <Filter>Render\Material System\Components\Tasks</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

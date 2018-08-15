@@ -50,7 +50,7 @@
 #include "SamplerParameterDX11.h"
 
 #include "RenderEffectDX11.h"
-//#include "GeometryDX11.h"
+#include "GeometryDX11.h"
 //#include "CommandListDX11.h"
 
 #include "DXGIAdapter.h"
@@ -59,7 +59,7 @@
 #include "ParameterManagerDX11.h"
 #include "PipelineManagerDX11.h"
 
-//#include "Task.h"
+#include "Task.h"
 
 #include "Events/EventManager.h"
 #include "Events/EvtErrorMessage.h"
@@ -1252,6 +1252,16 @@ ShaderDX11* RendererDX11::GetShader(int ID)
 void RendererDX11::QueueTask(Task* pTask)
 {
     m_vQueuedTasks.push_back(pTask);
+}
+
+void RendererDX11::ProcessTaskQueue()
+{
+    for (size_t i = 0; i < m_vQueuedTasks.size(); i++)
+    {
+        m_vQueuedTasks[i]->ExecuteTask(pImmPipeline, m_pParamMgr);
+    }
+
+    m_vQueuedTasks.clear();
 }
 
 Texture1dDX11* RendererDX11::GetTexture1DByIndex(int rid)

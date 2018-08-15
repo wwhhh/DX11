@@ -4,7 +4,7 @@
 #include "ViewPortDX11.h"
 
 Camera::Camera() :
-	//m_pCameraView( nullptr ),
+	m_pCameraView( nullptr ),
 	m_pOverlayView( nullptr ),
 	m_pScene( nullptr ),
 	m_fNear( 0.1f ),
@@ -17,16 +17,13 @@ Camera::Camera() :
 	m_pViewPositionWriter( nullptr ),
 	m_pSpatialController( nullptr )
 {
-	// Create the spatial controller, which will be used to manipulate the node
-	// in a simple way.
-
+	// 空间控制器
 	m_pSpatialController = new SpatialController<Node3D>();
 	GetNode()->Controllers.Attach( m_pSpatialController );
 
     m_ProjMatrix.MakeIdentity();
 
 	m_pViewPositionWriter = Parameters.SetVectorParameter( L"ViewPosition", Vector4f( 0.0f, 0.0f, 0.0f, 0.0f ) );
-
 }
 
 Camera::~Camera()
@@ -38,6 +35,34 @@ void Camera::RenderFrame( RendererDX11* pRenderer )
 {
 	if ( m_pOverlayView )
 		pRenderer->QueueTask( m_pOverlayView );
+
+    if (m_pCameraView)
+    {
+        Vector3f p = GetBody()->Transform.LocalPointToWorldSpace(Vector3f(0.0f, 0.0f, 0.0f));
+        m_pViewPositionWriter->SetValue(Vector4f(p.x, p.y, p.z, 1.0f));
+
+        Parameters.InitRenderParams();
+
+        m_pCameraView->SetViewMatrix(m_ViewMatrix);
+
+        //pRenderer->m_pParamMgr->SetViewMatrixParameter(&m_ViewMatrix);
+        //pRenderer->m_pParamMgr->SetProjMatrixParameter(&m_ProjMatrix);
+
+        // 设置场景节点
+        if (m_pScene) {
+            m_pCameraView->SetScene(m_pScene);
+        }
+
+        // 加入渲染队列
+        m_pCameraView->QueuePreTasks(pRenderer);
+        // 处理渲染队列
+        pRenderer->ProcessTaskQueue();
+    }
+}
+
+void Camera::SetCameraView(SceneRenderTask* pTask)
+{
+    m_pCameraView = pTask;
 }
 
 void Camera::SetOverlayView( Task* pTask )
@@ -125,11 +150,17 @@ float Camera::GetFieldOfView()
 void Camera::ApplyProjectionParams()
 {
 	m_ProjMatrix = Matrix4f::PerspectiveFovLHMatrix( m_fFov, m_fAspect, m_fNear, m_fFar );
+ 
+    if (m_pCameraView)
+        m_pCameraView->SetProjMatrix(m_ProjMatrix);
 }
 
 void Camera::ApplyOrthographicParams()
 {
 	m_ProjMatrix = Matrix4f::OrthographicLHMatrix( m_fNear, m_fFar, m_fWidth, m_fHeight );
+
+    if (m_pCameraView)
+        m_pCameraView->SetProjMatrix(m_ProjMatrix);
 }
 
 const Matrix4f& Camera::ProjMatrix() const

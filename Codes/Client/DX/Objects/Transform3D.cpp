@@ -47,8 +47,7 @@ void Transform3D::UpdateWorld( const Matrix4f& parent )
 
 void Transform3D::UpdateWorld( )
 {
-	// If no parent matrix is available, then simply make the world matrix the
-	// local matrix.
+	// 如果没有副矩阵, 然后简单的让世界矩阵变成当前矩阵
     m_mWorld = m_mLocal;
 }
 

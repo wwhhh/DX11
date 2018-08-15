@@ -14,6 +14,7 @@
 #include "Rendering/Texture2dConfigDX11.h"
 #include "Rendering/MaterialGeneratorDX11.h"
 #include "Rendering/GeometryGeneratorDX11.h"
+#include "Rendering/ViewPerspective.h"
 
 #include "Objects/FirstPersonCamera.h"
 #include "Objects/Actor.h"
@@ -126,16 +127,13 @@ void App::ShutdownEngineComponents() {
 }
 Actor* pActorSpere;
 void App::Initialize() {
+    
+    ViewPerspective* pCameraView = new ViewPerspective(*m_pRenderer11, m_RenderTarget, m_DepthTarget);
     g_Camera = new FirstPersonCamera();
+    g_Camera->SetCameraView(pCameraView);
     g_Camera->SetEventManager(&EvtManager);
     g_Camera->SetProjectionParams(0.01f, 100.0f, m_pWindow->GetWidth() / m_pWindow->GetHeight(), DirectX::XM_PIDIV2);
     g_Camera->Spatial().SetTranslation(Vector3f(0.0f, 1.0f, -5.0f));
-
-    m_ViewMatrix = g_Camera->ViewMatrix();
-    m_ProjMatrix = g_Camera->ProjMatrix();
-
-    m_pRenderer11->m_pParamMgr->SetViewMatrixParameter(&m_ViewMatrix);
-    m_pRenderer11->m_pParamMgr->SetProjMatrixParameter(&m_ProjMatrix);
 
     pActorSpere = new Actor();
     Entity3D* pEntitySphere = pActorSpere->GetBody();
@@ -156,19 +154,21 @@ void App::Initialize() {
 void App::Update() {
     m_pTimer->Update();
 
-    g_Camera->Spatial().GetEntity()->Update(m_pTimer->Elapsed());
-    EvtManager.ProcessEvent(EvtFrameStartPtr(new EvtFrameStart(m_pTimer->Elapsed())));
+    float duration = m_pTimer->Elapsed();
+
+    g_Camera->Spatial().GetEntity()->Update(duration);
+    EvtManager.ProcessEvent(EvtFrameStartPtr(new EvtFrameStart(duration)));
 
     m_pRenderer11->pImmPipeline->ClearBuffers(Vector4f(0.0f, 0.0f, 0.0f, 0.0f), 1.0f);
-    
     m_ViewMatrix = g_Camera->ViewMatrix();
     m_pRenderer11->m_pParamMgr->SetViewMatrixParameter(&m_ViewMatrix);
 
-    m_pRenderer11->m_pParamMgr->SetWorldMatrixParameter(&pActorSpere->GetNode()->Transform.WorldMatrix());
+    m_pScene->Update(duration);
+    m_pScene->Render(m_pRenderer11);
+
+    //m_pRenderer11->m_pParamMgr->SetWorldMatrixParameter(&pActorSpere->GetNode()->Transform.WorldMatrix());
     //pActorSpere->GetBody()->SetRenderParams(m_pRenderer11->m_pParamMgr);
     //pActorSpere->GetBody()->Render(m_pRenderer11->pImmPipeline, m_pRenderer11->m_pParamMgr, VIEWTYPE::VT_PERSPECTIVE);
-
-    m_pScene->Render(m_pRenderer11);
 
     // Present the results
     m_pRenderer11->Present(m_pWindow->GetHandle(), m_pWindow->GetSwapChain());
