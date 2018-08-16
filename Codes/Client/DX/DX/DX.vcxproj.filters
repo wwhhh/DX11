@@ -541,6 +541,12 @@
     <ClInclude Include="..\Rendering\ViewPerspective.h">
       <Filter>Render\Material System\Components\Tasks</Filter>
     </ClInclude>
+    <ClInclude Include="..\Rendering\GeometryLoaderDX11.h">
+      <Filter>Render\Pipeline System\Executors\Old Style Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Rendering\ms3dspec.h">
+      <Filter>Render\Pipeline System\Executors</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Application\Application.cpp">
@@ -926,6 +932,9 @@
     </ClCompile>
     <ClCompile Include="..\Rendering\ViewPerspective.cpp">
       <Filter>Render\Material System\Components\Tasks</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Rendering\GeometryLoaderDX11.cpp">
+      <Filter>Render\Pipeline System\Executors\Old Style Objects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -15,6 +15,7 @@
 #include "Rendering/MaterialGeneratorDX11.h"
 #include "Rendering/GeometryGeneratorDX11.h"
 #include "Rendering/ViewPerspective.h"
+#include "Rendering/GeometryLoaderDX11.h"
 
 #include "Objects/FirstPersonCamera.h"
 #include "Objects/Actor.h"
@@ -36,9 +37,8 @@ App::~App() {
 }
 
 bool App::ConfigureEngineComponents() {
-    // The application currently supplies the 
-    int width = 640;
-    int height = 480;
+    int width = 1280;
+    int height = 960;
 
     std::wstring name = L"BaseApp";
 
@@ -125,30 +125,63 @@ void App::ShutdownEngineComponents() {
         delete m_pWindow;
     }
 }
-Actor* pActorSpere;
+
 void App::Initialize() {
     
+    // 场景和相机
     ViewPerspective* pCameraView = new ViewPerspective(*m_pRenderer11, m_RenderTarget, m_DepthTarget);
     g_Camera = new FirstPersonCamera();
     g_Camera->SetCameraView(pCameraView);
     g_Camera->SetEventManager(&EvtManager);
     g_Camera->SetProjectionParams(0.01f, 100.0f, m_pWindow->GetWidth() / m_pWindow->GetHeight(), DirectX::XM_PIDIV2);
-    g_Camera->Spatial().SetTranslation(Vector3f(0.0f, 1.0f, -5.0f));
-
-    pActorSpere = new Actor();
-    Entity3D* pEntitySphere = pActorSpere->GetBody();
-    Node3D* pSpereNode = pActorSpere->GetNode();
-    pSpereNode->Transform.Position() = Vector3f(5.0f, 0.0f, 0.0f);
-    MaterialPtr pMtlSphere = MaterialGeneratorDX11::GenerateBaseMaterial(*m_pRenderer11);
-    pEntitySphere->Visual.SetMaterial(pMtlSphere);
-    GeometryPtr pGeoSphere = GeometryPtr(new GeometryDX11());
-    GeometryGeneratorDX11::GenerateSphere(pGeoSphere, 16, 9, 1.0f);
-    pGeoSphere->LoadToBuffers();
-    pEntitySphere->Visual.SetGeometry(pGeoSphere);
+    g_Camera->Spatial().SetTranslation(Vector3f(0.0f, 0.0f, -5.0f));
 
     m_pScene = new Scene();
-    m_pScene->AddActor(pActorSpere);
     m_pScene->AddCamera(g_Camera);
+
+    // 纹理
+    ResourcePtr pTexHex = m_pRenderer11->LoadTexture(std::wstring(L"Hex.png") /*, &loadInfo*/);
+    
+    // 采样器
+    D3D11_SAMPLER_DESC sampDesc;
+    sampDesc.AddressU = D3D11_TEXTURE_ADDRESS_WRAP;
+    sampDesc.AddressV = D3D11_TEXTURE_ADDRESS_WRAP;
+    sampDesc.AddressW = D3D11_TEXTURE_ADDRESS_WRAP;
+    sampDesc.BorderColor[0] = sampDesc.BorderColor[1] = sampDesc.BorderColor[2] = sampDesc.BorderColor[3] = 0;
+    sampDesc.ComparisonFunc = D3D11_COMPARISON_ALWAYS;
+    sampDesc.Filter = D3D11_FILTER_MAXIMUM_MIN_MAG_MIP_POINT;
+    sampDesc.MaxAnisotropy = 16;
+    sampDesc.MaxLOD = D3D11_FLOAT32_MAX;
+    sampDesc.MinLOD = 0.0f;
+    sampDesc.MipLODBias = 0.0f;
+    int samplerState = m_pRenderer11->CreateSamplerState(&sampDesc);
+
+    // 场景物体
+    for (size_t i = 0; i < 100; i++)
+    {
+        Actor* pActorSpere = new Actor();
+        Entity3D* pEntitySphere = pActorSpere->GetBody();
+        Node3D* pSpereNode = pActorSpere->GetNode();
+        pSpereNode->Transform.Position() = Vector3f(i * 2.0f, 0.0f, 0.0f);
+        MaterialPtr pMtlSphere = MaterialGeneratorDX11::GenerateBaseMaterial(*m_pRenderer11);
+        pEntitySphere->Visual.SetMaterial(pMtlSphere);
+        GeometryPtr pGeoSphere = GeometryPtr(new GeometryDX11());
+        GeometryGeneratorDX11::GenerateSphere(pGeoSphere, 16, 9, 1.0f);
+        pGeoSphere->LoadToBuffers();
+        pEntitySphere->Visual.SetGeometry(pGeoSphere);
+        m_pScene->AddActor(pActorSpere);
+    }
+
+    Actor* pActorScene = new Actor();
+    Entity3D* pEntityScene = pActorScene->GetBody();
+    MaterialPtr pMtlSphere = MaterialGeneratorDX11::GenerateModelMaterial(*m_pRenderer11);
+    pMtlSphere->Parameters.SetShaderResourceParameter(L"ModelTexture", pTexHex);
+    pMtlSphere->Parameters.SetSamplerParameter(L"ModelSampler", samplerState);
+    pEntityScene->Visual.SetMaterial(pMtlSphere);
+    GeometryPtr pGeoScene = GeometryLoaderDX11::loadMS3DFile2(L"Sample_Scene.ms3d");
+    pGeoScene->LoadToBuffers();
+    pEntityScene->Visual.SetGeometry(pGeoScene);
+    m_pScene->AddActor(pActorScene);
 }
 
 void App::Update() {
@@ -166,11 +199,7 @@ void App::Update() {
     m_pScene->Update(duration);
     m_pScene->Render(m_pRenderer11);
 
-    //m_pRenderer11->m_pParamMgr->SetWorldMatrixParameter(&pActorSpere->GetNode()->Transform.WorldMatrix());
-    //pActorSpere->GetBody()->SetRenderParams(m_pRenderer11->m_pParamMgr);
-    //pActorSpere->GetBody()->Render(m_pRenderer11->pImmPipeline, m_pRenderer11->m_pParamMgr, VIEWTYPE::VT_PERSPECTIVE);
-
-    // Present the results
+    // 交换 swapchain 展示结果
     m_pRenderer11->Present(m_pWindow->GetHandle(), m_pWindow->GetSwapChain());
 }
 

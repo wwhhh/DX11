@@ -177,6 +177,7 @@
     <ClInclude Include="..\Rendering\DXGIOutput.h" />
     <ClInclude Include="..\Rendering\GeometryDX11.h" />
     <ClInclude Include="..\Rendering\GeometryGeneratorDX11.h" />
+    <ClInclude Include="..\Rendering\GeometryLoaderDX11.h" />
     <ClInclude Include="..\Rendering\GeometryShaderDX11.h" />
     <ClInclude Include="..\Rendering\GeometryStageDX11.h" />
     <ClInclude Include="..\Rendering\IndexBufferDX11.h" />
@@ -190,6 +191,7 @@
     <ClInclude Include="..\Rendering\MatrixArrayParameterWriterDX11.h" />
     <ClInclude Include="..\Rendering\MatrixParameterDX11.h" />
     <ClInclude Include="..\Rendering\MatrixParameterWriterDX11.h" />
+    <ClInclude Include="..\Rendering\ms3dspec.h" />
     <ClInclude Include="..\Rendering\OutputMergerStageDX11.h" />
     <ClInclude Include="..\Rendering\OutputMergerStageStateDX11.h" />
     <ClInclude Include="..\Rendering\ParameterContainer.h" />
@@ -310,6 +312,7 @@
     <ClCompile Include="..\Rendering\DXGIOutput.cpp" />
     <ClCompile Include="..\Rendering\GeometryDX11.cpp" />
     <ClCompile Include="..\Rendering\GeometryGeneratorDX11.cpp" />
+    <ClCompile Include="..\Rendering\GeometryLoaderDX11.cpp" />
     <ClCompile Include="..\Rendering\GeometryShaderDX11.cpp" />
     <ClCompile Include="..\Rendering\GeometryStageDX11.cpp" />
     <ClCompile Include="..\Rendering\IndexBufferDX11.cpp" />

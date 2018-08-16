@@ -61,6 +61,7 @@ void Camera::SetCameraView(SceneRenderTask* pTask)
 {
     m_pCameraView = pTask;
     m_pCameraView->SetEntity(m_pBody);
+    m_pCameraView->SetProjMatrix(m_ProjMatrix);
 }
 
 void Camera::SetOverlayView( Task* pTask )
