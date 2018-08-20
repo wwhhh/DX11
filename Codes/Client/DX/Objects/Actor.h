@@ -14,7 +14,6 @@ public:
 	Entity3D* GetBody() const;
 	Entity3D* GetBody();
 
-
 	void AddElement( Entity3D* pElement );
 	void RemoveElement( Entity3D* pElement );
 	void AddElement( Node3D* pElement );

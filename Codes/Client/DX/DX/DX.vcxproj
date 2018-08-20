@@ -157,7 +157,10 @@
     <ClInclude Include="..\Objects\Entity3D.h" />
     <ClInclude Include="..\Objects\FirstPersonCamera.h" />
     <ClInclude Include="..\Objects\IController.h" />
+    <ClInclude Include="..\Objects\Light.h" />
     <ClInclude Include="..\Objects\Node3D.h" />
+    <ClInclude Include="..\Objects\PointLight.h" />
+    <ClInclude Include="..\Objects\PositionExtractorController.h" />
     <ClInclude Include="..\Objects\Scene.h" />
     <ClInclude Include="..\Objects\SceneGraph.h" />
     <ClInclude Include="..\Objects\SpatialController.h" />
@@ -294,7 +297,9 @@
     <ClCompile Include="..\Objects\Camera.cpp" />
     <ClCompile Include="..\Objects\Entity3D.cpp" />
     <ClCompile Include="..\Objects\FirstPersonCamera.cpp" />
+    <ClCompile Include="..\Objects\Light.cpp" />
     <ClCompile Include="..\Objects\Node3D.cpp" />
+    <ClCompile Include="..\Objects\PointLight.cpp" />
     <ClCompile Include="..\Objects\Scene.cpp" />
     <ClCompile Include="..\Objects\SceneGraph.cpp" />
     <ClCompile Include="..\Objects\Transform3D.cpp" />
@@ -392,6 +397,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Objects\IController.inl" />
+    <None Include="..\Objects\PositionExtractorController.inl" />
     <None Include="..\Objects\SpatialController.inl" />
     <None Include="..\Rendering\TStateArrayMonitor.inl" />
     <None Include="..\Rendering\TStateMonitor.inl" />

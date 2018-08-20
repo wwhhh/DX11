@@ -83,3 +83,24 @@ void Scene::RemoveActor(Actor* pActor)
     Node3D* pParent = static_cast<Node3D*>(pActor->GetNode()->GetParent());
     if (pParent) pParent->DetachChild(pActor->GetNode());
 }
+
+void Scene::AddLight(Light* light)
+{
+    AddActor(light);
+    m_vLights.push_back(light);
+}
+
+Light* Scene::GetLight(unsigned int index)
+{
+    if (m_vLights.size() > index)
+    {
+        return m_vLights[index];
+    }
+
+    return 0;
+}
+
+unsigned int Scene::GetLightCount()
+{
+    return(m_vLights.size());
+}

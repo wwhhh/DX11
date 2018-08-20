@@ -133,6 +133,9 @@
     <Filter Include="Render\Material System\Components\Tasks">
       <UniqueIdentifier>{119df09c-a4c6-41dd-842f-547ecbdb7dec}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Objects\Scene Objects\Lights">
+      <UniqueIdentifier>{d117c689-e1f5-46be-a084-502ca29abf4a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Interface\IWindowProc.h">
@@ -547,6 +550,15 @@
     <ClInclude Include="..\Rendering\ms3dspec.h">
       <Filter>Render\Pipeline System\Executors</Filter>
     </ClInclude>
+    <ClInclude Include="..\Objects\Light.h">
+      <Filter>Objects\Scene Objects\Lights</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Objects\PointLight.h">
+      <Filter>Objects\Scene Objects\Lights</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Objects\PositionExtractorController.h">
+      <Filter>Objects\Controllers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Application\Application.cpp">
@@ -936,6 +948,12 @@
     <ClCompile Include="..\Rendering\GeometryLoaderDX11.cpp">
       <Filter>Render\Pipeline System\Executors\Old Style Objects</Filter>
     </ClCompile>
+    <ClCompile Include="..\Objects\Light.cpp">
+      <Filter>Objects\Scene Objects\Lights</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Objects\PointLight.cpp">
+      <Filter>Objects\Scene Objects\Lights</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Rendering\TStateArrayMonitor.inl">
@@ -948,6 +966,9 @@
       <Filter>Objects\Controllers</Filter>
     </None>
     <None Include="..\Objects\SpatialController.inl">
+      <Filter>Objects\Controllers</Filter>
+    </None>
+    <None Include="..\Objects\PositionExtractorController.inl">
       <Filter>Objects\Controllers</Filter>
     </None>
   </ItemGroup>

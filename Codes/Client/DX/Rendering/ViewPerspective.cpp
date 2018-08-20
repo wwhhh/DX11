@@ -91,9 +91,9 @@ void ViewPerspective::ExecuteTask(PipelineManagerDX11* pPipelineManager, IParame
 
         SetRenderParams(pParamManager);
 
-        //if (m_pScene->GetLightCount() > 0) {
-        //    m_pScene->GetLight(0)->Parameters.SetRenderParams(pParamManager);
-        //}
+        if (m_pScene->GetLightCount() > 0) {
+            m_pScene->GetLight(0)->Parameters.SetRenderParams(pParamManager);
+        }
 
         pPipelineManager->ClearPipelineResources();
 

@@ -159,8 +159,8 @@ void FirstPersonCamera::Update()
     timer.Update();
     float timeDelta = timer.Elapsed();    
 
-    float CamMoveSpeed = 1.0f * timeDelta;
-    const float CamRotSpeed = 0.3f * timeDelta;    
+    float CamMoveSpeed = 0.003f;
+    const float CamRotSpeed = 0.003f;    
 
     // Move the camera with keyboard input
     if ( m_bPressedKeys[SpeedUpKey] )

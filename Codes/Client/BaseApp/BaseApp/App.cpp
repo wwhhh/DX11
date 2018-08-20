@@ -19,6 +19,7 @@
 
 #include "Objects/FirstPersonCamera.h"
 #include "Objects/Actor.h"
+#include "Objects/PointLight.h"
 
 struct Vertex
 {
@@ -127,20 +128,33 @@ void App::ShutdownEngineComponents() {
 }
 
 void App::Initialize() {
-    
+
     // 场景和相机
     ViewPerspective* pCameraView = new ViewPerspective(*m_pRenderer11, m_RenderTarget, m_DepthTarget);
     g_Camera = new FirstPersonCamera();
     g_Camera->SetCameraView(pCameraView);
     g_Camera->SetEventManager(&EvtManager);
     g_Camera->SetProjectionParams(0.01f, 100.0f, m_pWindow->GetWidth() / m_pWindow->GetHeight(), DirectX::XM_PIDIV2);
-    g_Camera->Spatial().SetTranslation(Vector3f(0.0f, 0.0f, -5.0f));
+    g_Camera->Spatial().SetTranslation(Vector3f(0.0f, 10.0f, -5.0f));
 
     m_pScene = new Scene();
     m_pScene->AddCamera(g_Camera);
 
+    PointLight* pPointLight = new PointLight();
+    Entity3D* pEntitySphere = pPointLight->GetBody();
+    pEntitySphere->SetName(L"PointLight");
+    Node3D* pSpereNode = pPointLight->GetNode();
+    pSpereNode->Transform.Position() = Vector3f(-3.0f, 10.0f, 0.0f);
+    MaterialPtr pMtlSphere = MaterialGeneratorDX11::GenerateBaseMaterial(*m_pRenderer11);
+    pEntitySphere->Visual.SetMaterial(pMtlSphere);
+    GeometryPtr pGeoSphere = GeometryPtr(new GeometryDX11());
+    GeometryGeneratorDX11::GenerateSphere(pGeoSphere, 16, 9, 1.0f);
+    pGeoSphere->LoadToBuffers();
+    pEntitySphere->Visual.SetGeometry(pGeoSphere);
+    m_pScene->AddLight(pPointLight);
+
     // 纹理
-    ResourcePtr pTexHex = m_pRenderer11->LoadTexture(std::wstring(L"Hex.png") /*, &loadInfo*/);
+    ResourcePtr pTexHex = m_pRenderer11->LoadTexture(std::wstring(L"Hex.png"));
     
     // 采样器
     D3D11_SAMPLER_DESC sampDesc;
@@ -157,28 +171,29 @@ void App::Initialize() {
     int samplerState = m_pRenderer11->CreateSamplerState(&sampDesc);
 
     // 场景物体
-    for (size_t i = 0; i < 100; i++)
-    {
-        Actor* pActorSpere = new Actor();
-        Entity3D* pEntitySphere = pActorSpere->GetBody();
-        Node3D* pSpereNode = pActorSpere->GetNode();
-        pSpereNode->Transform.Position() = Vector3f(i * 2.0f, 0.0f, 0.0f);
-        MaterialPtr pMtlSphere = MaterialGeneratorDX11::GenerateBaseMaterial(*m_pRenderer11);
-        pEntitySphere->Visual.SetMaterial(pMtlSphere);
-        GeometryPtr pGeoSphere = GeometryPtr(new GeometryDX11());
-        GeometryGeneratorDX11::GenerateSphere(pGeoSphere, 16, 9, 1.0f);
-        pGeoSphere->LoadToBuffers();
-        pEntitySphere->Visual.SetGeometry(pGeoSphere);
-        m_pScene->AddActor(pActorSpere);
-    }
+    //for (size_t i = 0; i < 100; i++)
+    //{
+    //    Actor* pActorSpere = new Actor();
+    //    Entity3D* pEntitySphere = pActorSpere->GetBody();
+    //    Node3D* pSpereNode = pActorSpere->GetNode();
+    //    pSpereNode->Transform.Position() = Vector3f(i % 10 * 2.0f, 0.0f, i / 10 * 2.0f);
+    //    MaterialPtr pMtlSphere = MaterialGeneratorDX11::GenerateBaseMaterial(*m_pRenderer11);
+    //    pEntitySphere->Visual.SetMaterial(pMtlSphere);
+    //    GeometryPtr pGeoSphere = GeometryPtr(new GeometryDX11());
+    //    GeometryGeneratorDX11::GenerateSphere(pGeoSphere, 16, 9, 1.0f);
+    //    pGeoSphere->LoadToBuffers();
+    //    pEntitySphere->Visual.SetGeometry(pGeoSphere);
+    //    m_pScene->AddActor(pActorSpere);
+    //}
 
     Actor* pActorScene = new Actor();
     Entity3D* pEntityScene = pActorScene->GetBody();
-    MaterialPtr pMtlSphere = MaterialGeneratorDX11::GenerateModelMaterial(*m_pRenderer11);
-    pMtlSphere->Parameters.SetShaderResourceParameter(L"ModelTexture", pTexHex);
-    pMtlSphere->Parameters.SetSamplerParameter(L"ModelSampler", samplerState);
-    pEntityScene->Visual.SetMaterial(pMtlSphere);
-    GeometryPtr pGeoScene = GeometryLoaderDX11::loadMS3DFile2(L"Sample_Scene.ms3d");
+    pEntityScene->SetName(L"Sample_Scene");
+    MaterialPtr pMtlScene = MaterialGeneratorDX11::GeneratePhongMaterial(*m_pRenderer11);
+    pMtlScene->Parameters.SetShaderResourceParameter(L"ModelTexture", pTexHex);
+    pMtlScene->Parameters.SetSamplerParameter(L"ModelSampler", samplerState);
+    pEntityScene->Visual.SetMaterial(pMtlScene);
+    GeometryPtr pGeoScene = GeometryLoaderDX11::loadMS3DFile2(L"Walker.ms3d");
     pGeoScene->LoadToBuffers();
     pEntityScene->Visual.SetGeometry(pGeoScene);
     m_pScene->AddActor(pActorScene);

@@ -33,7 +33,7 @@ VS_OUTPUT VSMain( in VS_INPUT input )
 
 float4 PSMain( in VS_OUTPUT input ) : SV_Target
 {
-	float4 color = ModelTexture.Sample( ModelSampler, input.texcoord );;
+	float4 color = ModelTexture.Sample( ModelSampler, input.texcoord );
 	
 	return( color );
 }

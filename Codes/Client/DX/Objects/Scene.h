@@ -3,6 +3,7 @@
 #include "Camera.h"
 #include "Node3D.h"
 #include "Entity3D.h"
+#include "Light.h"
 
 class Scene {
 public:
@@ -20,6 +21,10 @@ public:
     void AddActor(Actor* actor);
     void RemoveActor(Actor* actor);
 
+    void AddLight(Light* light);
+    Light* GetLight(unsigned int index);
+    unsigned int GetLightCount();
+
     Node3D* GetRoot();
 
 public:
@@ -29,4 +34,5 @@ protected:
     Node3D * m_pRoot;
     std::vector< Camera* > m_vCameras;
     std::vector< Actor* > m_vActors;
+    std::vector< Light* > m_vLights;
 };
