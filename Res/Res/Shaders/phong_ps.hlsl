@@ -31,6 +31,7 @@ float4 PSMain( in PS_INPUT input ) : SV_Target
 	float3 L = normalize(LightPosition.xyz - input.position.xyz);
 	float3 V = normalize(ViewPosition.xyz - input.position.xyz);
 	float3 R = normalize(reflect(-L, N));
+	float3 H = normalize(L + V);
 	
 	// ambient
 	float4 ambient = Ia * lightColor;
@@ -40,7 +41,10 @@ float4 PSMain( in PS_INPUT input ) : SV_Target
 	
 	// specular
 	float4 Kp = 32;
+	// phong
 	float4 specular = Is * pow(max(dot(V, R), 0), Kp) * lightColor;
+	// blinn-phong
+	//float4 specular = Is * pow(max(dot(N, H), 0), Kp) * lightColor;
 	
 	float4 lighting = color * (ambient + diffuse + specular);
 	
