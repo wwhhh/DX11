@@ -275,6 +275,14 @@ bool App::HandleEvent(EventPtr pEvent)
         {
             pLight->GetNode()->Transform.Position().y -= 0.5f;
         }
+        else if (key == 49)
+        {
+            pLight->GetNode()->Transform.Position().z += 0.5f;
+        }
+        else if (key == 50)
+        {
+            pLight->GetNode()->Transform.Position().z -= 0.5f;
+        }
     }
 
     return(Application::HandleEvent(pEvent));

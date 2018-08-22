@@ -14,6 +14,7 @@ struct VS_INPUT
 struct VS_OUTPUT
 {
 	float4 position : SV_Position;
+	float3 worldposition : POSITION;
 	float3 normal   : NORMAL;
 	float4 texcoord : TEXCOORDS;
 };
@@ -37,6 +38,7 @@ cbuffer SceneInfo
 struct PS_INPUT
 {
 	float4 position : SV_Position;
+	float3 worldposition : POSITION;
 	float3 normal   : NORMAL;
 	float4 texcoord : TEXCOORDS;
 };
@@ -47,6 +49,7 @@ VS_OUTPUT VSMain( in VS_INPUT input )
 	
 	float3 NormalWS = mul( input.normal, (float3x3)WorldMatrix );
 	output.normal = NormalWS;
+	output.worldposition = mul(input.position, WorldMatrix);
 	output.position = mul( float4( input.position, 1.0f ), WorldViewProjMatrix );
 	output.texcoord = input.texcoord;
 	
@@ -58,7 +61,7 @@ float4 PSMain( in PS_INPUT input ) : SV_Target
 	float4 lightColor = float4(1.0f, 1.0f, 1.0f, 1.0f);
 	float4 color = ModelTexture.Sample( ModelSampler, input.texcoord );
 	
-	float3 P = input.position.xyz;
+	float3 P = input.worldposition;
 	float3 LP = LightPosition.xyz;
 	float3 VP = ViewPosition.xyz;
 	float3 N = normalize(input.normal);
@@ -82,5 +85,5 @@ float4 PSMain( in PS_INPUT input ) : SV_Target
 	
 	float4 lighting = color * (ambient + diffuse + specular);
 	
-	return normalize(input.position);//float4(L, 1.0f);
+	return lighting;
 }
