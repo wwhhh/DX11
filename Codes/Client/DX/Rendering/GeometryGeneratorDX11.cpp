@@ -117,3 +117,145 @@ void GeometryGeneratorDX11::GenerateSphere(GeometryPtr pGeometry, unsigned int U
         pGeometry->AddFace(face);
     }
 }
+
+void GeometryGeneratorDX11::GenerateAxisGeometry(GeometryPtr pGeometry)
+{
+    // The axis geometry requires to have at positions plus colors.
+
+    VertexElementDX11* pPositions = new VertexElementDX11(3, 5 * 3);
+    pPositions->m_SemanticName = "POSITION";
+    pPositions->m_uiSemanticIndex = 0;
+    pPositions->m_Format = DXGI_FORMAT_R32G32B32_FLOAT;
+    pPositions->m_uiInputSlot = 0;
+    pPositions->m_uiAlignedByteOffset = 0;
+    pPositions->m_InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
+    pPositions->m_uiInstanceDataStepRate = 0;
+
+    VertexElementDX11* pColors = new VertexElementDX11(4, 5 * 3);
+    pColors->m_SemanticName = "COLOR";
+    pColors->m_uiSemanticIndex = 0;
+    pColors->m_Format = DXGI_FORMAT_R32G32B32A32_FLOAT;
+    pColors->m_uiInputSlot = 0;
+    pColors->m_uiAlignedByteOffset = D3D11_APPEND_ALIGNED_ELEMENT;
+    pColors->m_InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
+    pColors->m_uiInstanceDataStepRate = 0;
+
+    Vector3f* pPos = pPositions->Get3f(0);
+    Vector4f* pCols = pColors->Get4f(0);
+
+    float fThickness = 0.001f;
+    float fLength = 10.0f;
+
+    Vector4f XBase = Vector4f(1.0f, 0.0f, 0.0f, 1.0f);
+    Vector4f XEnd = Vector4f(1.0f, 0.0f, 0.0f, 1.0f);
+    Vector4f YBase = Vector4f(0.0f, 1.0f, 0.0f, 1.0f);
+    Vector4f YEnd = Vector4f(0.0f, 1.0f, 0.0f, 1.0f);
+    Vector4f ZBase = Vector4f(0.0f, 0.0f, 1.0f, 1.0f);
+    Vector4f ZEnd = Vector4f(0.0f, 0.0f, 1.0f, 1.0f);
+
+
+    // Create the X-Axis
+    pPos[0] = Vector3f(0.0f, fThickness, fThickness);
+    pCols[0] = XBase;
+    pPos[1] = Vector3f(0.0f, -fThickness, fThickness);
+    pCols[1] = XBase;
+    pPos[2] = Vector3f(0.0f, -fThickness, -fThickness);
+    pCols[2] = XBase;
+    pPos[3] = Vector3f(0.0f, fThickness, -fThickness);
+    pCols[3] = XBase;
+    pPos[4] = Vector3f(fLength, 0.0f, 0.0f);
+    pCols[4] = XEnd;
+
+    // Next is the Y-Axis.
+    pPos[5] = Vector3f(fThickness, 0.0f, fThickness);
+    pCols[5] = YBase;
+    pPos[6] = Vector3f(-fThickness, 0.0f, fThickness);
+    pCols[6] = YBase;
+    pPos[7] = Vector3f(-fThickness, 0.0f, -fThickness);
+    pCols[7] = YBase;
+    pPos[8] = Vector3f(fThickness, 0.0f, -fThickness);
+    pCols[8] = YBase;
+    pPos[9] = Vector3f(0.0f, fLength, 0.0f);
+    pCols[9] = YEnd;
+
+    // Next is the Z-Axis.
+    pPos[10] = Vector3f(fThickness, fThickness, 0.0f);
+    pCols[10] = ZBase;
+    pPos[11] = Vector3f(-fThickness, fThickness, 0.0f);
+    pCols[11] = ZBase;
+    pPos[12] = Vector3f(-fThickness, -fThickness, 0.0f);
+    pCols[12] = ZBase;
+    pPos[13] = Vector3f(fThickness, -fThickness, 0.0f);
+    pCols[13] = ZBase;
+    pPos[14] = Vector3f(0.0f, 0.0f, fLength);
+    pCols[14] = ZEnd;
+
+    // Generate and add each line segment.
+    TriangleIndices tri;
+
+    tri.i1 = 0;
+    tri.i2 = 1;
+    tri.i3 = 4;
+    pGeometry->AddFace(tri);
+
+    tri.i1 = 1;
+    tri.i2 = 2;
+    tri.i3 = 4;
+    pGeometry->AddFace(tri);
+
+    tri.i1 = 2;
+    tri.i2 = 3;
+    tri.i3 = 4;
+    pGeometry->AddFace(tri);
+
+    tri.i1 = 3;
+    tri.i2 = 0;
+    tri.i3 = 4;
+    pGeometry->AddFace(tri);
+
+
+    tri.i1 = 5;
+    tri.i2 = 6;
+    tri.i3 = 9;
+    pGeometry->AddFace(tri);
+
+    tri.i1 = 6;
+    tri.i2 = 7;
+    tri.i3 = 9;
+    pGeometry->AddFace(tri);
+
+    tri.i1 = 7;
+    tri.i2 = 8;
+    tri.i3 = 9;
+    pGeometry->AddFace(tri);
+
+    tri.i1 = 8;
+    tri.i2 = 5;
+    tri.i3 = 9;
+    pGeometry->AddFace(tri);
+
+
+    tri.i1 = 10;
+    tri.i2 = 11;
+    tri.i3 = 14;
+    pGeometry->AddFace(tri);
+
+    tri.i1 = 11;
+    tri.i2 = 12;
+    tri.i3 = 14;
+    pGeometry->AddFace(tri);
+
+    tri.i1 = 12;
+    tri.i2 = 13;
+    tri.i3 = 14;
+    pGeometry->AddFace(tri);
+
+    tri.i1 = 13;
+    tri.i2 = 10;
+    tri.i3 = 14;
+    pGeometry->AddFace(tri);
+
+    // Add the vertex elements to the geometry object.
+    pGeometry->AddElement(pPositions);
+    pGeometry->AddElement(pColors);
+}

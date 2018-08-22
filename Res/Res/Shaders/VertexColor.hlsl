@@ -17,7 +17,7 @@ struct VS_OUTPUT
 	float4 color : COLOR;
 };
 //-----------------------------------------------------------------------------
-VS_OUTPUT VSMAIN( in VS_INPUT v )
+VS_OUTPUT VSMain( in VS_INPUT v )
 {
 	VS_OUTPUT o = (VS_OUTPUT)0;
 
@@ -28,7 +28,7 @@ VS_OUTPUT VSMAIN( in VS_INPUT v )
 	return o;
 }
 //-----------------------------------------------------------------------------
-float4 PSMAIN( in VS_OUTPUT input ) : SV_Target
+float4 PSMain( in VS_OUTPUT input ) : SV_Target
 {
 	float4 color = input.color;
 	//float4 color = float4( 0.75f, 0.75f, 1.0f, 1.0f );

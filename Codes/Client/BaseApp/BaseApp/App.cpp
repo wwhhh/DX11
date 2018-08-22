@@ -21,6 +21,8 @@
 #include "Objects/Actor.h"
 #include "Objects/PointLight.h"
 
+#include "Events\EvtKeyDown.h"
+
 struct Vertex
 {
     DirectX::XMFLOAT3 Pos;
@@ -30,7 +32,7 @@ struct Vertex
 FirstPersonCamera* g_Camera;
 
 App::App() {
-
+    EvtManager.AddEventListener(SYSTEM_KEYBOARD_KEYDOWN, this);
 }
 
 App::~App() {
@@ -140,22 +142,10 @@ void App::Initialize() {
     m_pScene = new Scene();
     m_pScene->AddCamera(g_Camera);
 
-    PointLight* pPointLight = new PointLight();
-    Entity3D* pEntitySphere = pPointLight->GetBody();
-    pEntitySphere->SetName(L"PointLight");
-    Node3D* pSpereNode = pPointLight->GetNode();
-    pSpereNode->Transform.Position() = Vector3f(-3.0f, 10.0f, 0.0f);
-    MaterialPtr pMtlSphere = MaterialGeneratorDX11::GenerateBaseMaterial(*m_pRenderer11);
-    pEntitySphere->Visual.SetMaterial(pMtlSphere);
-    GeometryPtr pGeoSphere = GeometryPtr(new GeometryDX11());
-    GeometryGeneratorDX11::GenerateSphere(pGeoSphere, 16, 9, 1.0f);
-    pGeoSphere->LoadToBuffers();
-    pEntitySphere->Visual.SetGeometry(pGeoSphere);
-    m_pScene->AddLight(pPointLight);
 
+    // ---------------------------------------------一些资源声明----------------------------------------------------
     // 纹理
     ResourcePtr pTexHex = m_pRenderer11->LoadTexture(std::wstring(L"Hex.png"));
-    
     // 采样器
     D3D11_SAMPLER_DESC sampDesc;
     sampDesc.AddressU = D3D11_TEXTURE_ADDRESS_WRAP;
@@ -169,34 +159,63 @@ void App::Initialize() {
     sampDesc.MinLOD = 0.0f;
     sampDesc.MipLODBias = 0.0f;
     int samplerState = m_pRenderer11->CreateSamplerState(&sampDesc);
+    // -------------------------------------------------------------------------------------------------------------
 
-    // 场景物体
-    //for (size_t i = 0; i < 100; i++)
-    //{
-    //    Actor* pActorSpere = new Actor();
-    //    Entity3D* pEntitySphere = pActorSpere->GetBody();
-    //    Node3D* pSpereNode = pActorSpere->GetNode();
-    //    pSpereNode->Transform.Position() = Vector3f(i % 10 * 2.0f, 0.0f, i / 10 * 2.0f);
-    //    MaterialPtr pMtlSphere = MaterialGeneratorDX11::GenerateBaseMaterial(*m_pRenderer11);
-    //    pEntitySphere->Visual.SetMaterial(pMtlSphere);
-    //    GeometryPtr pGeoSphere = GeometryPtr(new GeometryDX11());
-    //    GeometryGeneratorDX11::GenerateSphere(pGeoSphere, 16, 9, 1.0f);
-    //    pGeoSphere->LoadToBuffers();
-    //    pEntitySphere->Visual.SetGeometry(pGeoSphere);
-    //    m_pScene->AddActor(pActorSpere);
-    //}
+    PointLight* pPointLight = new PointLight();
+    Entity3D* pEntitySphere = pPointLight->GetBody();
+    pEntitySphere->SetName(L"PointLight");
+    Node3D* pSpereNode = pPointLight->GetNode();
+    pSpereNode->Transform.Position() = Vector3f(0.0f, 0.0f, 0.0f);
+    MaterialPtr pMtlSphere = MaterialGeneratorDX11::GenerateBaseMaterial(*m_pRenderer11);
+    pEntitySphere->Visual.SetMaterial(pMtlSphere);
+    GeometryPtr pGeoSphere = GeometryPtr(new GeometryDX11());
+    GeometryGeneratorDX11::GenerateSphere(pGeoSphere, 16, 9, 1.0f);
+    pGeoSphere->LoadToBuffers();
+    pEntitySphere->Visual.SetGeometry(pGeoSphere);
+    m_pScene->AddLight(pPointLight);
 
+    // 默认画一个轴
+    Actor* pActorAxis = new Actor();
+    pActorAxis->GetNode()->Transform.Scale() = Vector3f(10.0f, 10.0f, 10.0f);
+    Entity3D* pEntityAxis = pActorAxis->GetBody();
+    pEntityAxis->SetName(L"Axis");
+    MaterialPtr pMtlAxis = MaterialGeneratorDX11::GenerateBaseColorMaterial(*m_pRenderer11);
+    pEntityAxis->Visual.SetMaterial(pMtlAxis);
+    GeometryPtr pGeoAxis = GeometryPtr(new GeometryDX11());
+    GeometryGeneratorDX11::GenerateAxisGeometry(pGeoAxis);
+    pGeoAxis->LoadToBuffers();
+    pEntityAxis->Visual.SetGeometry(pGeoAxis);
+    m_pScene->AddActor(pActorAxis);
+
+    // 默认画一个平台
     Actor* pActorScene = new Actor();
+    pActorScene->GetNode()->Transform.Scale() = Vector3f(20.0f, 20.0f, 20.0f);
     Entity3D* pEntityScene = pActorScene->GetBody();
     pEntityScene->SetName(L"Sample_Scene");
     MaterialPtr pMtlScene = MaterialGeneratorDX11::GeneratePhongMaterial(*m_pRenderer11);
     pMtlScene->Parameters.SetShaderResourceParameter(L"ModelTexture", pTexHex);
     pMtlScene->Parameters.SetSamplerParameter(L"ModelSampler", samplerState);
     pEntityScene->Visual.SetMaterial(pMtlScene);
-    GeometryPtr pGeoScene = GeometryLoaderDX11::loadMS3DFile2(L"Walker.ms3d");
+    GeometryPtr pGeoScene = GeometryLoaderDX11::loadMS3DFile2(L"Plane.ms3d");
     pGeoScene->LoadToBuffers();
     pEntityScene->Visual.SetGeometry(pGeoScene);
     m_pScene->AddActor(pActorScene);
+
+    for (size_t i = 0; i < 10; i++)
+    {
+        Actor* pActorSphere = new Actor();
+        pActorSphere->GetNode()->Transform.Position() = Vector3f(i % 2 * 4.0f, 0.0f, i / 2 * 4.0f);
+        Entity3D* pEntitySphere = pActorSphere->GetBody();
+        pEntitySphere->SetName(L"Sphere");
+        MaterialPtr pMtlScene = MaterialGeneratorDX11::GeneratePhongMaterial(*m_pRenderer11);
+        pMtlScene->Parameters.SetShaderResourceParameter(L"ModelTexture", pTexHex);
+        pMtlScene->Parameters.SetSamplerParameter(L"ModelSampler", samplerState);
+        pEntitySphere->Visual.SetMaterial(pMtlScene);
+        GeometryPtr pGeoSphere = GeometryLoaderDX11::loadMS3DFile2(L"Sphere.ms3d");
+        pGeoSphere->LoadToBuffers();
+        pEntitySphere->Visual.SetGeometry(pGeoSphere);
+        m_pScene->AddActor(pActorSphere);
+    }
 }
 
 void App::Update() {
@@ -233,5 +252,30 @@ std::wstring App::GetName()
 
 bool App::HandleEvent(EventPtr pEvent)
 {
+    eEVENT e = pEvent->GetEventType();
+    if (e == SYSTEM_KEYBOARD_KEYDOWN)
+    {
+        Light* pLight = m_pScene->GetLight(0);
+
+        EvtKeyDownPtr pKeyDown = std::static_pointer_cast<EvtKeyDown>(pEvent);
+        UINT key = pKeyDown->GetCharacterCode();
+        if (key == 37)
+        {
+            pLight->GetNode()->Transform.Position().x -= 0.5f;
+        }
+        else if (key == 38)
+        {
+            pLight->GetNode()->Transform.Position().y += 0.5f;
+        }
+        else if (key == 39)
+        {
+            pLight->GetNode()->Transform.Position().x += 0.5f;
+        }
+        else if (key == 40)
+        {
+            pLight->GetNode()->Transform.Position().y -= 0.5f;
+        }
+    }
+
     return(Application::HandleEvent(pEvent));
 }

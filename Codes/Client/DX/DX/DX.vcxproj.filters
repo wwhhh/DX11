@@ -136,6 +136,9 @@
     <Filter Include="Objects\Scene Objects\Lights">
       <UniqueIdentifier>{d117c689-e1f5-46be-a084-502ca29abf4a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Render\Technique System">
+      <UniqueIdentifier>{0d3f7728-8fec-4f08-a4a0-5775f7e49765}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Interface\IWindowProc.h">
