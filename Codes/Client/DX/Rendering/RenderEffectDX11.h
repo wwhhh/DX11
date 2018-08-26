@@ -2,7 +2,6 @@
 
 #include "ShaderDX11.h"
 
-class PipelineManagerDX11;
 class IParameterManager;
 
 class RenderEffectDX11

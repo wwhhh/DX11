@@ -6,7 +6,4 @@ class PointLight : public Light
 public:
     PointLight();
     virtual ~PointLight();
-
-protected:
-    VectorParameterWriterDX11 * m_PositionWriter;
 };

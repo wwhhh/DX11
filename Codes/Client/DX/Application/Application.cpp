@@ -147,6 +147,11 @@ LRESULT Application::WindowProc(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lpara
     case WM_KEYDOWN:
     {
         EvtKeyDownPtr pEvent = EvtKeyDownPtr(new EvtKeyDown(hwnd, wparam, lparam));
+        UINT key = pEvent->GetCharacterCode();
+        if (key == 27)
+        {
+            PostQuitMessage(0);
+        }
         EvtManager.ProcessEvent(pEvent);
     } break;
 

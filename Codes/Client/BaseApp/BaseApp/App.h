@@ -5,7 +5,7 @@
 #include "Objects\Scene.h"
 #include "Maths\Matrix4f.h"
 
-class App : public Application, public IEventListener
+class App : public Application
 {
 public:
     App();

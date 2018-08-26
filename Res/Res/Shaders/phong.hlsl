@@ -19,9 +19,13 @@ struct VS_OUTPUT
 	float4 texcoord : TEXCOORDS;
 };
 
-cbuffer PointLightInfo
+cbuffer LightParams
 {
 	float4 LightPosition;
+	float4 LightColor;
+	float4 LightDirection;
+	float4 SpotlightAngles;
+	float4 LightRange;
 	float4 Ia;
 	float4 Id;
 	float4 Is;
@@ -58,7 +62,11 @@ VS_OUTPUT VSMain( in VS_INPUT input )
 
 float4 PSMain( in PS_INPUT input ) : SV_Target
 {
-	float4 lightColor = float4(1.0f, 1.0f, 1.0f, 1.0f);
+	float attenuation = 1.0f;
+	float dis = length(LightPosition - input.worldposition);
+	attenuation = 1.0f / (1.0f + 0.09f * dis + 0.032f * dis * dis);
+	
+	float4 lightColor = LightColor;
 	float4 color = ModelTexture.Sample( ModelSampler, input.texcoord );
 	
 	float3 P = input.worldposition;
@@ -83,7 +91,7 @@ float4 PSMain( in PS_INPUT input ) : SV_Target
 	// blinn-phong
 	//float4 specular = Is * pow(max(dot(N, H), 0), Kp) * lightColor;
 	
-	float4 lighting = color * (ambient + diffuse + specular);
+	float4 lighting = color * (ambient + diffuse + specular) * attenuation;
 	
 	return lighting;
 }

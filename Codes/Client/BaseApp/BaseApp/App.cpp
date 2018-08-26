@@ -142,7 +142,6 @@ void App::Initialize() {
     m_pScene = new Scene();
     m_pScene->AddCamera(g_Camera);
 
-
     // ---------------------------------------------一些资源声明----------------------------------------------------
     // 纹理
     ResourcePtr pTexHex = m_pRenderer11->LoadTexture(std::wstring(L"Hex.png"));
@@ -165,11 +164,11 @@ void App::Initialize() {
     Entity3D* pEntitySphere = pPointLight->GetBody();
     pEntitySphere->SetName(L"PointLight");
     Node3D* pSpereNode = pPointLight->GetNode();
-    pSpereNode->Transform.Position() = Vector3f(0.0f, 0.0f, 0.0f);
+    pSpereNode->Transform.Position() = Vector3f(0.0f, 5.0f, 0.0f);
     MaterialPtr pMtlSphere = MaterialGeneratorDX11::GenerateBaseMaterial(*m_pRenderer11);
     pEntitySphere->Visual.SetMaterial(pMtlSphere);
     GeometryPtr pGeoSphere = GeometryPtr(new GeometryDX11());
-    GeometryGeneratorDX11::GenerateSphere(pGeoSphere, 16, 9, 1.0f);
+    GeometryGeneratorDX11::GenerateSphere(pGeoSphere, 16, 9, 0.2f);
     pGeoSphere->LoadToBuffers();
     pEntitySphere->Visual.SetGeometry(pGeoSphere);
     m_pScene->AddLight(pPointLight);
@@ -213,6 +212,7 @@ void App::Initialize() {
         pEntitySphere->Visual.SetMaterial(pMtlScene);
         GeometryPtr pGeoSphere = GeometryLoaderDX11::loadMS3DFile2(L"Sphere.ms3d");
         pGeoSphere->LoadToBuffers();
+        pGeoSphere->ComputeTangentFrame();
         pEntitySphere->Visual.SetGeometry(pGeoSphere);
         m_pScene->AddActor(pActorSphere);
     }
@@ -265,7 +265,7 @@ bool App::HandleEvent(EventPtr pEvent)
         }
         else if (key == 38)
         {
-            pLight->GetNode()->Transform.Position().y += 0.5f;
+            pLight->GetNode()->Transform.Position().z += 0.5f;
         }
         else if (key == 39)
         {
@@ -273,15 +273,15 @@ bool App::HandleEvent(EventPtr pEvent)
         }
         else if (key == 40)
         {
-            pLight->GetNode()->Transform.Position().y -= 0.5f;
+            pLight->GetNode()->Transform.Position().z -= 0.5f;
         }
         else if (key == 49)
         {
-            pLight->GetNode()->Transform.Position().z += 0.5f;
+            pLight->GetNode()->Transform.Position().y += 0.5f;
         }
         else if (key == 50)
         {
-            pLight->GetNode()->Transform.Position().z -= 0.5f;
+            pLight->GetNode()->Transform.Position().y -= 0.5f;
         }
     }
 

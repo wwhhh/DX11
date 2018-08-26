@@ -139,6 +139,18 @@
     <Filter Include="Render\Technique System">
       <UniqueIdentifier>{0d3f7728-8fec-4f08-a4a0-5775f7e49765}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource">
+      <UniqueIdentifier>{a54ddaab-fd08-41c2-bb13-ff07090f473e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource\Manager">
+      <UniqueIdentifier>{600e5103-42eb-482f-83a2-aec9377247a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource\Structure">
+      <UniqueIdentifier>{570b1c80-6f22-49b6-9865-2d5c1ddcc6af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Render\Sprite System">
+      <UniqueIdentifier>{f68f1614-da8e-489b-bd71-d55a035ab8c7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Interface\IWindowProc.h">
@@ -562,6 +574,57 @@
     <ClInclude Include="..\Objects\PositionExtractorController.h">
       <Filter>Objects\Controllers</Filter>
     </ClInclude>
+    <ClInclude Include="..\Core\Resource\MaterialLoader.h">
+      <Filter>Resource\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Core\Resource\TextureLoader.h">
+      <Filter>Resource\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Core\Resource\Material.h">
+      <Filter>Resource\Structure</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Core\Resource\Technique.h">
+      <Filter>Resource\Structure</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Rendering\ShaderSemanticDef.h">
+      <Filter>Render\Material System\Components\Tasks</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Rendering\SpriteFontDX11.h">
+      <Filter>Render\Sprite System</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Rendering\SpriteFontLoaderDX11.h">
+      <Filter>Render\Sprite System</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Rendering\SpriteRendererDX11.h">
+      <Filter>Render\Sprite System</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Rendering\SpriteVertexDX11.h">
+      <Filter>Render\Sprite System</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Rendering\DrawIndexedInstancedExecutorDX11.h">
+      <Filter>Render\Pipeline System\Executors</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Rendering\DrawExecutorDX11.h">
+      <Filter>Render\Pipeline System\Executors</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Rendering\DrawIndexedExecutorDX11.h">
+      <Filter>Render\Pipeline System\Executors</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Rendering\TGrowableVertexBufferDX11.h">
+      <Filter>Render\Pipeline System\Executors\Basic Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Rendering\TGrowableBufferDX11.h">
+      <Filter>Render\Pipeline System\Executors\Basic Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Rendering\TGrowableIndexBufferDX11.h">
+      <Filter>Render\Pipeline System\Executors\Basic Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Rendering\TGrowableStructuredBufferDX11.h">
+      <Filter>Render\Pipeline System\Executors\Basic Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Rendering\ViewTextOverlay.h">
+      <Filter>Render\Material System\Components\Tasks</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Application\Application.cpp">
@@ -957,6 +1020,33 @@
     <ClCompile Include="..\Objects\PointLight.cpp">
       <Filter>Objects\Scene Objects\Lights</Filter>
     </ClCompile>
+    <ClCompile Include="..\Core\Resource\MaterialLoader.cpp">
+      <Filter>Resource\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Core\Resource\TextureLoader.cpp">
+      <Filter>Resource\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Core\Resource\Material.cpp">
+      <Filter>Resource\Structure</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Core\Resource\Technique.cpp">
+      <Filter>Resource\Structure</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Rendering\SpriteFontDX11.cpp">
+      <Filter>Render\Sprite System</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Rendering\SpriteFontLoaderDX11.cpp">
+      <Filter>Render\Sprite System</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Rendering\SpriteRendererDX11.cpp">
+      <Filter>Render\Sprite System</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Rendering\SpriteVertexDX11.cpp">
+      <Filter>Render\Sprite System</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Rendering\ViewTextOverlay.cpp">
+      <Filter>Render\Material System\Components\Tasks</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Rendering\TStateArrayMonitor.inl">
@@ -973,6 +1063,27 @@
     </None>
     <None Include="..\Objects\PositionExtractorController.inl">
       <Filter>Objects\Controllers</Filter>
+    </None>
+    <None Include="..\Rendering\DrawIndexedInstancedExecutorDX11.inl">
+      <Filter>Render\Pipeline System\Executors</Filter>
+    </None>
+    <None Include="..\Rendering\DrawExecutorDX11.inl">
+      <Filter>Render\Pipeline System\Executors</Filter>
+    </None>
+    <None Include="..\Rendering\DrawIndexedExecutorDX11.inl">
+      <Filter>Render\Pipeline System\Executors</Filter>
+    </None>
+    <None Include="..\Rendering\TGrowableVertexBufferDX11.inl">
+      <Filter>Render\Pipeline System\Executors\Basic Objects</Filter>
+    </None>
+    <None Include="..\Rendering\TGrowableBufferDX11.inl">
+      <Filter>Render\Pipeline System\Executors\Basic Objects</Filter>
+    </None>
+    <None Include="..\Rendering\TGrowableIndexBufferDX11.inl">
+      <Filter>Render\Pipeline System\Executors\Basic Objects</Filter>
+    </None>
+    <None Include="..\Rendering\TGrowableStructuredBufferDX11.inl">
+      <Filter>Render\Pipeline System\Executors\Basic Objects</Filter>
     </None>
   </ItemGroup>
 </Project>

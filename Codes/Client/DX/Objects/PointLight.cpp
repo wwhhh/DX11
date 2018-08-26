@@ -1,7 +1,6 @@
 #include "PointLight.h"
 
-PointLight::PointLight() :
-    m_PositionWriter(nullptr)
+PointLight::PointLight()
 {
     m_PositionWriter = Parameters.SetVectorParameter(L"LightPosition", Vector4f(0.0f, 0.0f, 0.0f, 1.0f));
 
